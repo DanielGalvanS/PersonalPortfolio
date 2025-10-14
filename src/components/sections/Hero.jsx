@@ -1,0 +1,191 @@
+import { motion } from "framer-motion";
+import { ArrowDown, Github, Linkedin, Mail, MessageCircle } from "lucide-react";
+import Button from "../ui/Button";
+import { personalInfo, socialLinks } from "@/constants/data";
+
+export default function Hero() {
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleWhatsApp = () => {
+    const message = encodeURIComponent("Hola! Me gustaría hablar sobre un proyecto.");
+    window.open(`https://wa.me/${personalInfo.whatsapp}?text=${message}`, "_blank");
+  };
+
+  return (
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center section-padding pt-24"
+    >
+      <div className="container-custom">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-6"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <p className="text-primary font-medium mb-2">Hola, soy</p>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+                {personalInfo.name}
+              </h1>
+              <h2 className="text-2xl md:text-3xl text-muted-foreground">
+                {personalInfo.title}
+              </h2>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-lg text-muted-foreground max-w-xl"
+            >
+              {personalInfo.bio}
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-wrap gap-4"
+            >
+              <Button
+                onClick={() => scrollToSection("projects")}
+                size="lg"
+                className="gap-2"
+              >
+                Ver Proyectos
+                <ArrowDown className="w-4 h-4" />
+              </Button>
+              <Button
+                onClick={() => scrollToSection("contact")}
+                variant="outline"
+                size="lg"
+                className="gap-2"
+              >
+                <Mail className="w-4 h-4" />
+                Contáctame
+              </Button>
+              <Button
+                onClick={handleWhatsApp}
+                variant="outline"
+                size="lg"
+                className="gap-2 bg-green-500 text-white hover:bg-green-600 border-green-500"
+              >
+                <MessageCircle className="w-4 h-4" />
+                WhatsApp
+              </Button>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex gap-4 pt-4"
+            >
+              <a
+                href={socialLinks.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary hover:text-primary-foreground transition-all"
+                aria-label="GitHub"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+              <a
+                href={socialLinks.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary hover:text-primary-foreground transition-all"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+            </motion.div>
+          </motion.div>
+
+          {/* Image/Illustration */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="relative hidden lg:flex items-center justify-center"
+          >
+            <div className="relative w-[400px] h-[400px]">
+              {/* Gradient Background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full blur-3xl" />
+
+              {/* Placeholder for profile image */}
+              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-border bg-accent flex items-center justify-center">
+                <div className="text-9xl">👨‍💻</div>
+              </div>
+
+              {/* Floating elements */}
+              <motion.div
+                animate={{
+                  y: [0, -10, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute -top-4 -right-4 w-20 h-20 bg-secondary rounded-lg flex items-center justify-center text-3xl shadow-lg"
+              >
+                
+              </motion.div>
+
+              <motion.div
+                animate={{
+                  y: [0, 10, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.5,
+                }}
+                className="absolute -bottom-4 -left-4 w-20 h-20 bg-secondary rounded-lg flex items-center justify-center text-3xl shadow-lg"
+              >
+                
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        >
+          <motion.div
+            animate={{
+              y: [0, 10, 0],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <ArrowDown className="w-6 h-6 text-muted-foreground" />
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
