@@ -4,7 +4,7 @@ import { Card, CardContent } from "../ui/Card";
 import Badge from "../ui/Badge";
 import Button from "../ui/Button";
 import { projects } from "@/constants/data";
-import { ExternalLink, Github, Filter } from "lucide-react";
+import { ExternalLink, Github, Filter, Images, Shield } from "lucide-react";
 
 export default function Projects() {
   const ref = useRef(null);
@@ -61,37 +61,49 @@ export default function Projects() {
             >
               <Card className="h-full overflow-hidden hover:shadow-xl transition-all group">
                 {/* Project Image */}
-                <div className="relative h-48 bg-gradient-to-br from-primary/20 to-purple-500/20 overflow-hidden">
+                <div className={`relative h-48 overflow-hidden ${
+                  project.image
+                    ? 'bg-gradient-to-br from-primary/20 to-purple-500/20'
+                    : 'bg-gradient-to-br from-slate-900/90 to-slate-700/90 dark:from-slate-800 dark:to-slate-950'
+                }`}>
                   {project.featured && (
                     <div className="absolute top-4 right-4 z-10">
                       <Badge variant="default">Destacado</Badge>
                     </div>
                   )}
-                  <div className="absolute inset-0 flex items-center justify-center text-6xl group-hover:scale-110 transition-transform duration-300">
-                    {/* Pendiente */}
-                  </div>
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Shield className="w-24 h-24 text-foreground/20" strokeWidth={1} />
+                    </div>
+                  )}
                   {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform"
-                        aria-label="Ver demo"
-                      >
-                        <ExternalLink className="w-6 h-6" />
-                      </a>
-                    )}
+                  <div className="absolute inset-0 bg-background/90 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary hover:scale-110 transition-transform"
-                        aria-label="Ver código"
+                        className="w-12 h-12 rounded-full bg-foreground text-background flex items-center justify-center hover:scale-110 transition-transform"
+                        aria-label="Ver repositorio"
                       >
                         <Github className="w-6 h-6" />
+                      </a>
+                    )}
+                    {project.galleryUrl && (
+                      <a
+                        href={project.galleryUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-12 h-12 rounded-full bg-foreground text-background flex items-center justify-center hover:scale-110 transition-transform"
+                        aria-label="Ver galería de fotos"
+                      >
+                        <Images className="w-6 h-6" />
                       </a>
                     )}
                   </div>
@@ -118,17 +130,6 @@ export default function Projects() {
 
                   {/* Links */}
                   <div className="flex gap-4">
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-primary hover:underline flex items-center gap-1"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        Demo en vivo
-                      </a>
-                    )}
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
@@ -137,7 +138,18 @@ export default function Projects() {
                         className="text-sm text-primary hover:underline flex items-center gap-1"
                       >
                         <Github className="w-4 h-4" />
-                        Ver código
+                        Repositorio
+                      </a>
+                    )}
+                    {project.galleryUrl && (
+                      <a
+                        href={project.galleryUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-primary hover:underline flex items-center gap-1"
+                      >
+                        <Images className="w-4 h-4" />
+                        Galería
                       </a>
                     )}
                   </div>

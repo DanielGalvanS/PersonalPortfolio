@@ -26,14 +26,14 @@ export const socialLinks = {
 
 export const about = {
   description: [
-    "Estudiante de Computer Science en el Tecnológico de Monterrey (GPA 3.7/4.0) con experiencia práctica en desarrollo full stack y trabajo en equipos ágiles.",
-    "Actualmente trabajo como Software Engineer Intern en The Home Depot, donde desarrollo soluciones que impactan miles de tiendas a nivel nacional, optimizando flujos de trabajo y mejorando la experiencia de usuario.",
+    "Estudiante de Computer Science en el Tecnológico de Monterrey con experiencia práctica en desarrollo full stack y trabajo en equipos ágiles.",
+    "Actualmente trabajo como Software Engineer Intern en The Home Depot, donde desarrollo soluciones que impactan cientos de tiendas a nivel nacional, optimizando flujos de trabajo y mejorando la experiencia de usuario.",
     "Me especializo en crear aplicaciones web robustas y escalables utilizando tecnologías modernas como React, .NET, Node.js, y bases de datos SQL.",
   ],
   highlights: [
     "GPA 3.7/4.0",
     "Software Engineer en The Home Depot",
-    "Ganador 1er lugar KMX Young Innovator Award",
+    "1er lugar KMX Young Innovator Award",
     "Disponible para freelance",
   ],
 };
@@ -74,10 +74,11 @@ export const projects = [
     id: 1,
     title: "Kia Life – Onboarding App",
     description: "Plataforma de onboarding de tres meses para Kia Motors con tareas por fases, verificación dual entre empleados y administradores, y notificaciones automatizadas. Incluye entorno gamificado con Unity que recompensa a empleados con artículos virtuales y leaderboard. 🏆 Ganador 1er lugar KMX Young Innovator Award",
-    image: "/projects/kia-life.jpg",
+    image: "/KIA.JPG",
     technologies: ["React.js", "Node.js", "SQL Server", "AWS", "Unity"],
     liveUrl: "",
-    githubUrl: "",
+    githubUrl: "https://github.com/DanielGalvanS/KiaLife-app",
+    galleryUrl: "https://drive.google.com/drive/folders/1IA5h13OoS4fTzscZtBAZAoHngo7uCBms?usp=sharing", 
     featured: true,
     category: "Full Stack",
     award: "1er Lugar KMX Young Innovator Award",
@@ -87,10 +88,11 @@ export const projects = [
     id: 2,
     title: "Horno 3 – Interactive Museum App",
     description: "Guía de museo impulsada por IA usando Core ML + GPT-4 para generación de contenido en tiempo real y reconocimiento de secciones. Backend seguro con Supabase, autenticación JWT, APIs RESTful y sincronización en tiempo real entre plataformas web y móviles. Experiencia iOS interactiva con modo offline, tours personalizados y dashboards de analytics.",
-    image: "/projects/horno3.jpg",
+    image: "/FigmaFundidora.png",
     technologies: ["SwiftUI", "Core ML", "GPT-4", "Supabase", "Next.js"],
     liveUrl: "",
-    githubUrl: "",
+    githubUrl: "https://github.com/DanielGalvanS/DevOS",
+    galleryUrl: "https://www.canva.com/design/DAG1KF3KdNo/Ubnd-dugkdrFGfM-IsPi4A/edit?utm_content=DAG1KF3KdNo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton", 
     featured: true,
     category: "Full Stack",
     period: "Abr 2025 – Jun 2025"
@@ -99,10 +101,11 @@ export const projects = [
     id: 3,
     title: "SecuBank – IoT Security System",
     description: "Sistema IoT que integra sensores RFID y de movimiento para asegurar bóvedas bancarias con validación de acceso multinivel. Desarrollo de APIs backend e infraestructura de datos para alertas en tiempo real y autenticación de usuarios.",
-    image: "/projects/secubank.jpg",
+    image: "", 
     technologies: ["Arduino", "MySQL", "REST API"],
     liveUrl: "",
-    githubUrl: "",
+    githubUrl: "", // Sin GitHub
+    galleryUrl: "",
     featured: false,
     category: "Backend",
     period: "Abr 2024 – Jun 2024"
