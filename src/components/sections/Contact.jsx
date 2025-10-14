@@ -34,7 +34,7 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Send via WhatsApp
-    const message = `Hola! Soy ${formData.name}. ${formData.message}`;
+    const message = `Hola! Soy ${formData.name}.\nEmail: ${formData.email}\n\n${formData.message}`;
     const whatsappUrl = `https://wa.me/${
       personalInfo.whatsapp
     }?text=${encodeURIComponent(message)}`;
