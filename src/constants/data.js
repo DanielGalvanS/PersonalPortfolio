@@ -1,4 +1,4 @@
-// Datos del portafolio - Actualiza con tu información personal
+
 
 export const personalInfo = {
   name: "Daniel Galván",
@@ -114,31 +114,30 @@ export const projects = [
 
 export const skills = {
   frontend: [
-    { name: "React", level: 90, icon: "SiReact" },
-    { name: "JavaScript", level: 90, icon: "SiJavascript" },
-    { name: "HTML/CSS", level: 95, icon: "SiHtml5" },
-    { name: "Tailwind CSS", level: 85, icon: "SiTailwindcss" },
-    { name: "Next.js", level: 85, icon: "SiNextdotjs" },
-    { name: "SwiftUI", level: 75, icon: "SiSwift" },
-    { name: "MudBlazor", level: 70, icon: "SiDotnet" },
+    { name: "React", level: 90, icon: "react_dark" },
+    { name: "JavaScript", level: 90, icon: "javascript" },
+    { name: "HTML/CSS", level: 95, icon: "html5" },
+    { name: "Tailwind CSS", level: 85, icon: "tailwindcss" },
+    { name: "Next.js", level: 85, icon: "nextjs_icon_dark" },
+    { name: "Swift", level: 75, icon: "swift" },
   ],
   backend: [
-    { name: ".NET/C#", level: 85, icon: "SiDotnet" },
-    { name: "Node.js", level: 85, icon: "SiNodedotjs" },
-    { name: "Express", level: 85, icon: "SiExpress" },
-    { name: "Python", level: 80, icon: "SiPython" },
-    { name: "C++", level: 75, icon: "SiCplusplus" },
-    { name: "SQL Server", level: 85, icon: "SiMicrosoftsqlserver" },
-    { name: "MySQL", level: 80, icon: "SiMysql" },
-    { name: "PostgreSQL", level: 80, icon: "SiPostgresql" },
+    { name: ".NET", level: 85, icon: "dotnet" },
+    { name: "Node.js", level: 85, icon: "nodejs" },
+    { name: "Express", level: 85, icon: "expressjs_dark" },
+    { name: "Python", level: 80, icon: "python" },
+    { name: "C++", level: 75, icon: "c-plusplus" },
+    { name: "SQL Server", level: 85, icon: "sql-server" },
+    { name: "MySQL", level: 80, icon: "mysql-icon-dark" },
+    { name: "PostgreSQL", level: 80, icon: "postgresql" },
   ],
   tools: [
-    { name: "Git", level: 90, icon: "SiGit" },
-    { name: "Azure DevOps", level: 85, icon: "SiAzuredevops" },
-    { name: "AWS", level: 75, icon: "SiAmazonaws" },
-    { name: "Docker", level: 75, icon: "SiDocker" },
-    { name: "Figma", level: 80, icon: "SiFigma" },
-    { name: "GitHub", level: 90, icon: "SiGithub" },
+    { name: "Git", level: 90, icon: "git" },
+    { name: "Azure", level: 85, icon: "azure" },
+    { name: "AWS", level: 75, icon: "aws_dark" },
+    { name: "Docker", level: 75, icon: "docker" },
+    { name: "Figma", level: 80, icon: "figma" },
+    { name: "GitHub", level: 90, icon: "github_dark" },
   ],
 };
 

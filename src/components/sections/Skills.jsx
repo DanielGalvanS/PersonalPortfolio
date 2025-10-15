@@ -1,15 +1,12 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Card, CardContent } from "../ui/Card";
+import { FlowingLogos } from "../ui/flowing-logos";
 import { skills } from "@/constants/data";
-import * as SimpleIcons from "react-icons/si";
 
 const SkillBar = ({ skill, delay = 0 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-
-  // Obtener el componente del icono dinámicamente
-  const IconComponent = SimpleIcons[skill.icon];
 
   return (
     <motion.div
@@ -21,7 +18,11 @@ const SkillBar = ({ skill, delay = 0 }) => {
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          {IconComponent && <IconComponent className="w-5 h-5" />}
+          <img
+            src={`https://svgl.app/library/${skill.icon}.svg`}
+            alt={skill.name}
+            className="w-5 h-5"
+          />
           <span className="font-medium text-sm">{skill.name}</span>
         </div>
         <span className="text-xs text-muted-foreground font-medium">{skill.level}%</span>
@@ -130,32 +131,25 @@ export default function Skills() {
           </Card>
         </motion.div>
 
-        {/* Tech Stack Overview */}
+        {/* Tech Stack Overview - Flowing Logos */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-12"
+          className="mt-12 w-full overflow-x-hidden"
         >
           <h3 className="text-2xl font-bold text-center mb-8">
             Stack Tecnológico Completo
           </h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {Object.values(skills)
+          <FlowingLogos
+            data={Object.values(skills)
               .flat()
-              .map((skill) => {
-                const IconComponent = SimpleIcons[skill.icon];
-                return (
-                  <div
-                    key={skill.name}
-                    className="flex items-center gap-2 px-3 py-2 bg-card border border-border rounded-lg hover:border-primary hover:bg-accent/50 transition-all"
-                  >
-                    {IconComponent && <IconComponent className="w-4 h-4" />}
-                    <span className="text-sm font-medium">{skill.name}</span>
-                  </div>
-                );
-              })}
-          </div>
+              .map((skill) => ({
+                name: skill.name,
+                image: `https://svgl.app/library/${skill.icon}.svg`,
+              }))}
+            className="mt-6 w-full"
+          />
         </motion.div>
       </div>
     </section>

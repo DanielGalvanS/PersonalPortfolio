@@ -60,11 +60,21 @@ export default {
           "0%": { opacity: "0", transform: "translateX(-10px)" },
           "100%": { opacity: "1", transform: "translateX(0)" },
         },
+        "canopy-horizontal": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+        "canopy-vertical": {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(calc(-100% - var(--gap)))" },
+        },
       },
       animation: {
         "fade-in": "fade-in 0.4s ease-out",
         "fade-up": "fade-up 0.4s ease-out",
         "slide-in": "slide-in 0.3s ease-out",
+        "canopy-horizontal": "canopy-horizontal var(--duration) linear infinite",
+        "canopy-vertical": "canopy-vertical var(--duration) linear infinite",
       },
       fontFamily: {
         sans: [
