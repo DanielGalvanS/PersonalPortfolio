@@ -88,32 +88,7 @@ export default function Hero() {
               </Button>
             </motion.div>
 
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex gap-4 pt-4"
-            >
-              <a
-                href={socialLinks.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary hover:text-primary-foreground transition-all"
-                aria-label="GitHub"
-              >
-                <Github className="w-5 h-5" />
-              </a>
-              <a
-                href={socialLinks.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-primary hover:text-primary-foreground transition-all"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-            </motion.div>
+            
           </motion.div>
 
           {/* Image/Illustration */}
@@ -129,7 +104,7 @@ export default function Hero() {
 
               {/* Placeholder for profile image */}
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-border bg-accent flex items-center justify-center">
-                <div className="text-9xl">👨‍💻</div>
+                <img src="/daniel.JPG" alt="Profile Pic" />
               </div>
 
               {/* Floating elements */}
@@ -142,9 +117,17 @@ export default function Hero() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute -top-4 -right-4 w-20 h-20 bg-secondary rounded-lg flex items-center justify-center text-3xl shadow-lg"
+                className="absolute -top-4 -right-4 w-20 h-20 bg-secondary rounded-lg flex items-center justify-center shadow-lg hover:bg-primary hover:text-primary-foreground transition-all cursor-pointer"
               >
-                
+                <a
+                  href={socialLinks.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full h-full flex items-center justify-center"
+                  aria-label="GitHub"
+                >
+                  <Github className="w-8 h-8" />
+                </a>
               </motion.div>
 
               <motion.div
@@ -157,9 +140,17 @@ export default function Hero() {
                   ease: "easeInOut",
                   delay: 0.5,
                 }}
-                className="absolute -bottom-4 -left-4 w-20 h-20 bg-secondary rounded-lg flex items-center justify-center text-3xl shadow-lg"
+                className="absolute -bottom-4 -left-4 w-20 h-20 bg-secondary rounded-lg flex items-center justify-center shadow-lg hover:bg-primary hover:text-primary-foreground transition-all cursor-pointer"
               >
-                
+                <a
+                  href={socialLinks.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full h-full flex items-center justify-center"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-8 h-8" />
+                </a>
               </motion.div>
             </div>
           </motion.div>
