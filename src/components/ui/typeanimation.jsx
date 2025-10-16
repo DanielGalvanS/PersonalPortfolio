@@ -10,26 +10,25 @@ const Typeanimation = ({
   deletingSpeed = 50,
   pauseDuration = 1000,
   gradientFrom = "blue-500",
-  gradientTo = "purple-600"
+  gradientTo = "purple-600",
 }) => {
   const sequence = words.flatMap((word) => [word, pauseDuration]);
 
   return (
     <motion.span
-      className={cn(
-        `bg-clip-text text-transparent bg-gradient-to-r from-${gradientFrom} to-${gradientTo}`,
-        className
-      )}
+      className={cn("inline-block", className)}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}>
+      transition={{ duration: 1 }}
+    >
       <TypeAnimation
         sequence={sequence}
         wrapper="span"
         repeat={Infinity}
-        className=""
+        style={{ display: 'inline-block' }}
         speed={typingSpeed}
-        deletionSpeed={deletingSpeed} />
+        deletionSpeed={deletingSpeed}
+      />
     </motion.span>
   );
 };
