@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Moon, Sun, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { navLinks } from "@/constants/data";
@@ -89,7 +90,17 @@ export default function Header() {
                 onClick={() => scrollToSection(link.id)}
                 className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                {t(`nav.${link.id}`)}
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={`${link.id}-${i18n.language}`}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {t(`nav.${link.id}`)}
+                  </motion.span>
+                </AnimatePresence>
               </button>
             ))}
 
@@ -115,7 +126,17 @@ export default function Header() {
             {/* CV toggle*/}
             <Button variant="outline" className="ml-4" onClick={downloadCV}>
               <span><Download className="w-4 h-4"/></span>
-              {t('nav.downloadCV')}
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={`cv-${i18n.language}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {t('nav.downloadCV')}
+                </motion.span>
+              </AnimatePresence>
             </Button>
           </div>
 
@@ -155,7 +176,17 @@ export default function Header() {
                   onClick={() => scrollToSection(link.id)}
                   className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition-colors text-left rounded-md"
                 >
-                  {t(`nav.${link.id}`)}
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={`mobile-${link.id}-${i18n.language}`}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 10 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {t(`nav.${link.id}`)}
+                    </motion.span>
+                  </AnimatePresence>
                 </button>
               ))}
             </div>

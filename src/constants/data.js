@@ -1,4 +1,11 @@
-
+export const navLinks = [
+  { id: "home", label: "Inicio" },
+  { id: "about", label: "Sobre Mí" },
+  { id: "experience", label: "Experiencia" },
+  { id: "projects", label: "Proyectos" },
+  { id: "skills", label: "Habilidades" },
+  { id: "contact", label: "Contacto" },
+];
 
 export const personalInfo = {
   name: "Daniel Galván",
