@@ -2,8 +2,11 @@ import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail, MessageCircle } from "lucide-react";
 import Button from "../ui/Button";
 import { personalInfo, socialLinks } from "@/constants/data";
+import { useTranslation } from 'react-i18next';
 
 export default function Hero() {
+  const { t } = useTranslation();
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -12,7 +15,7 @@ export default function Hero() {
   };
 
   const handleWhatsApp = () => {
-    const message = encodeURIComponent("Hola! Me gustaría hablar sobre un proyecto.");
+    const message = encodeURIComponent(t("hero.whatsappMessage"));
     window.open(`https://wa.me/${personalInfo.whatsapp}?text=${message}`, "_blank");
   };
 
@@ -23,7 +26,6 @@ export default function Hero() {
     >
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -35,12 +37,12 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <p className="text-primary font-medium mb-2">Hola, soy</p>
+              <p className="text-primary font-medium mb-2">{t("hero.greeting")}</p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
                 {personalInfo.name}
               </h1>
               <h2 className="text-2xl md:text-3xl text-muted-foreground">
-                {personalInfo.title}
+                {t("hero.title")}
               </h2>
             </motion.div>
 
@@ -50,10 +52,9 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg text-muted-foreground max-w-xl"
             >
-              {personalInfo.bio}
+              {t("hero.bio")}
             </motion.p>
 
-            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -65,7 +66,7 @@ export default function Hero() {
                 size="lg"
                 className="gap-2"
               >
-                Ver Proyectos
+                {t("hero.viewProjects")}
                 <ArrowDown className="w-4 h-4" />
               </Button>
               <Button
@@ -75,7 +76,7 @@ export default function Hero() {
                 className="gap-2"
               >
                 <Mail className="w-4 h-4" />
-                Contáctame
+                {t("hero.contactMe")}
               </Button>
               <Button
                 onClick={handleWhatsApp}
@@ -84,14 +85,11 @@ export default function Hero() {
                 className="gap-2 bg-green-500 text-white hover:bg-green-600 border-green-500"
               >
                 <MessageCircle className="w-4 h-4" />
-                WhatsApp
+                {t("hero.whatsapp")}
               </Button>
             </motion.div>
-
-            
           </motion.div>
 
-          {/* Image/Illustration */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -99,24 +97,14 @@ export default function Hero() {
             className="relative hidden lg:flex items-center justify-center"
           >
             <div className="relative w-[400px] h-[400px]">
-              {/* Gradient Background */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full blur-3xl" />
-
-              {/* Placeholder for profile image */}
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-border bg-accent flex items-center justify-center">
                 <img src="/daniel.JPG" alt="Profile Pic" />
               </div>
 
-              {/* Floating elements */}
               <motion.div
-                animate={{
-                  y: [0, -10, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -top-4 -right-4 w-20 h-20 bg-secondary rounded-lg flex items-center justify-center shadow-lg hover:bg-primary hover:text-primary-foreground transition-all cursor-pointer"
               >
                 <a
@@ -131,15 +119,8 @@ export default function Hero() {
               </motion.div>
 
               <motion.div
-                animate={{
-                  y: [0, 10, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 0.5,
-                }}
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                 className="absolute -bottom-4 -left-4 w-20 h-20 bg-secondary rounded-lg flex items-center justify-center shadow-lg hover:bg-primary hover:text-primary-foreground transition-all cursor-pointer"
               >
                 <a
@@ -156,7 +137,6 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -164,14 +144,8 @@ export default function Hero() {
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
-            animate={{
-              y: [0, 10, 0],
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           >
             <ArrowDown className="w-6 h-6 text-muted-foreground" />
           </motion.div>

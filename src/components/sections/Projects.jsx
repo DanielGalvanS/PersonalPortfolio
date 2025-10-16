@@ -3,14 +3,25 @@ import { motion, useInView } from "framer-motion";
 import { Card, CardContent } from "../ui/Card";
 import Badge from "../ui/Badge";
 import Button from "../ui/Button";
-import { projects } from "@/constants/data";
+import { projects as projectsData } from "@/constants/data";
 import { ExternalLink, Github, Filter, Images, Shield } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 export default function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useTranslation();
 
   const [filter, setFilter] = useState("all");
+
+  const projectsList = t('projects.list', { returnObjects: true });
+
+  // Combinar datos traducidos con información técnica de data.js
+  const projects = projectsData.map((project, index) => ({
+    ...project,
+    title: projectsList[index]?.title || project.title,
+    description: projectsList[index]?.description || project.description,
+  }));
 
   const categories = ["all", ...new Set(projects.map((p) => p.category))];
 
@@ -28,9 +39,9 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Proyectos</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('projects.title')}</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            Una selección de proyectos en los que he trabajado
+            {t('projects.subtitle')}
           </p>
 
           {/* Filter Buttons */}
@@ -44,7 +55,7 @@ export default function Projects() {
                 onClick={() => setFilter(category)}
                 className="capitalize"
               >
-                {category === "all" ? "Todos" : category}
+                {category === "all" ? t('projects.all') : category}
               </Button>
             ))}
           </div>
@@ -68,7 +79,7 @@ export default function Projects() {
                 }`}>
                   {project.featured && (
                     <div className="absolute top-4 right-4 z-10">
-                      <Badge variant="default">Destacado</Badge>
+                      <Badge variant="default">{t('projects.featured')}</Badge>
                     </div>
                   )}
                   {project.image ? (
@@ -138,7 +149,7 @@ export default function Projects() {
                         className="text-sm text-primary hover:underline flex items-center gap-1"
                       >
                         <Github className="w-4 h-4" />
-                        Repositorio
+                        {t('projects.repository')}
                       </a>
                     )}
                     {project.galleryUrl && (
@@ -149,7 +160,7 @@ export default function Projects() {
                         className="text-sm text-primary hover:underline flex items-center gap-1"
                       >
                         <Images className="w-4 h-4" />
-                        Galería
+                        {t('projects.gallery')}
                       </a>
                     )}
                   </div>
@@ -162,7 +173,7 @@ export default function Projects() {
         {filteredProjects.length === 0 && (
           <div className="text-center py-12">
             <p className="text-muted-foreground">
-              No hay proyectos en esta categoría.
+              {t('projects.noProjects')}
             </p>
           </div>
         )}

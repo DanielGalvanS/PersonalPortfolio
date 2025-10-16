@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { Card, CardContent } from "../ui/Card";
 import { FlowingLogos } from "../ui/flowing-logos";
 import { skills } from "@/constants/data";
+import { useTranslation } from 'react-i18next';
 
 const SkillBar = ({ skill, delay = 0 }) => {
   const ref = useRef(null);
@@ -42,13 +43,14 @@ const SkillBar = ({ skill, delay = 0 }) => {
 export default function Skills() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useTranslation();
 
   const [activeTab, setActiveTab] = useState("frontend");
 
   const tabs = [
-    { id: "frontend", label: "Frontend" },
-    { id: "backend", label: "Backend" },
-    { id: "tools", label: "Herramientas" },
+    { id: "frontend", label: t('skills.frontend') },
+    { id: "backend", label: t('skills.backend') },
+    { id: "tools", label: t('skills.tools') },
   ];
 
   return (
@@ -61,10 +63,10 @@ export default function Skills() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Habilidades Técnicas
+            {t('skills.title')}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Tecnologías y herramientas con las que trabajo
+            {t('skills.subtitle')}
           </p>
         </motion.div>
 
@@ -120,12 +122,10 @@ export default function Skills() {
           <Card className="bg-primary/5 border-primary/20">
             <CardContent className="p-6 text-center">
               <h3 className="text-xl font-semibold mb-2">
-                Siempre Aprendiendo
+                {t('skills.alwaysLearning')}
               </h3>
               <p className="text-muted-foreground">
-                La tecnología evoluciona constantemente y yo también. Estoy
-                siempre explorando nuevas herramientas y mejorando mis
-                habilidades para ofrecer las mejores soluciones.
+                {t('skills.alwaysLearningDesc')}
               </p>
             </CardContent>
           </Card>
@@ -139,7 +139,7 @@ export default function Skills() {
           className="mt-12 w-full overflow-x-hidden"
         >
           <h3 className="text-2xl font-bold text-center mb-8">
-            Stack Tecnológico Completo
+            {t('skills.techStack')}
           </h3>
           <FlowingLogos
             data={Object.values(skills)

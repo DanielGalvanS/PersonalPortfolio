@@ -2,12 +2,23 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Card, CardContent } from "../ui/Card";
 import Badge from "../ui/Badge";
-import { experience } from "@/constants/data";
+import { experience as experienceTech } from "@/constants/data";
 import { Briefcase, MapPin, Calendar } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 export default function Experience() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useTranslation();
+
+  const experienceJobs = t('experience.jobs', { returnObjects: true });
+
+  // Combinar datos traducidos con tecnologías de data.js
+  const experience = experienceJobs.map((job, index) => ({
+    ...job,
+    technologies: experienceTech[index]?.technologies || [],
+    id: index + 1,
+  }));
 
   return (
     <section id="experience" className="section-padding" ref={ref}>
@@ -19,10 +30,10 @@ export default function Experience() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Experiencia Profesional
+            {t('experience.title')}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Mi trayectoria profesional y logros destacados
+            {t('experience.subtitle')}
           </p>
         </motion.div>
 
@@ -88,7 +99,7 @@ export default function Experience() {
                     {job.achievements && job.achievements.length > 0 && (
                       <div className="mb-4">
                         <h4 className="text-sm font-semibold mb-2">
-                          Logros destacados:
+                          {t('experience.achievements')}
                         </h4>
                         <ul className="space-y-2">
                           {job.achievements.map((achievement, i) => (

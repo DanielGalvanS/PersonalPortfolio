@@ -24,20 +24,6 @@ export const socialLinks = {
   portfolio: "",
 };
 
-export const about = {
-  description: [
-    "Estudiante de Computer Science en el Tecnológico de Monterrey con experiencia práctica en desarrollo full stack y trabajo en equipos ágiles.",
-    "Actualmente trabajo como Software Engineer Intern en The Home Depot, donde desarrollo soluciones que impactan cientos de tiendas a nivel nacional, optimizando flujos de trabajo y mejorando la experiencia de usuario.",
-    "Me especializo en crear aplicaciones web robustas y escalables utilizando tecnologías modernas como React, .NET, Node.js, y bases de datos SQL.",
-  ],
-  highlights: [
-    "GPA 3.7/4.0",
-    "Software Engineer en The Home Depot",
-    "1er lugar KMX Young Innovator Award",
-    "Disponible para freelance",
-  ],
-};
-
 export const experience = [
   {
     id: 1,
@@ -141,63 +127,3 @@ export const skills = {
   ],
 };
 
-export const services = [
-  {
-    id: 1,
-    title: "Desarrollo Web",
-    description: "Creación de sitios web modernos, responsivos y optimizados para SEO.",
-  },
-  {
-    id: 2,
-    title: "Aplicaciones Web",
-    description: "Desarrollo de aplicaciones web complejas con React y tecnologías modernas.",
-  },
-  {
-    id: 3,
-    title: "APIs y Backend",
-    description: "Diseño e implementación de APIs RESTful y servicios backend escalables.",
-  },
-  {
-    id: 4,
-    title: "UI/UX Design",
-    description: "Diseño de interfaces intuitivas y experiencias de usuario atractivas.",
-  },
-  {
-    id: 5,
-    title: "Optimización",
-    description: "Mejora del rendimiento y optimización de aplicaciones existentes.",
-  },
-  {
-    id: 6,
-    title: "Consultoría",
-    description: "Asesoramiento técnico y arquitectura de soluciones tecnológicas.",
-  },
-];
-
-export const testimonials = [
-  {
-    id: 1,
-    name: "Cliente 1",
-    position: "CEO, Empresa ABC",
-    content: "Excelente profesional, entregó el proyecto antes de tiempo y con calidad excepcional.",
-    avatar: "/testimonials/avatar1.jpg",
-    rating: 5,
-  },
-  {
-    id: 2,
-    name: "Cliente 2",
-    position: "CTO, Startup XYZ",
-    content: "Muy recomendado. Gran capacidad técnica y excelente comunicación durante todo el proyecto.",
-    avatar: "/testimonials/avatar2.jpg",
-    rating: 5,
-  },
-];
-
-export const navLinks = [
-  { id: "home", label: "Inicio" },
-  { id: "about", label: "Sobre Mí" },
-  { id: "experience", label: "Experiencia" },
-  { id: "projects", label: "Proyectos" },
-  { id: "skills", label: "Habilidades" },
-  { id: "contact", label: "Contacto" },
-];

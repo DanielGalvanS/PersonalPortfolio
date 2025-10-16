@@ -13,10 +13,12 @@ import {
   Twitter,
 } from "lucide-react";
 import { personalInfo, socialLinks } from "@/constants/data";
+import { useTranslation } from 'react-i18next';
 
 export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t, i18n } = useTranslation();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -34,7 +36,8 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Send via WhatsApp
-    const message = `Hola! Soy ${formData.name}.\nEmail: ${formData.email}\n\n${formData.message}`;
+    const greeting = i18n.language === "es" ? "Hola! Soy" : "Hello! I'm";
+    const message = `${greeting} ${formData.name}.\nEmail: ${formData.email}\n\n${formData.message}`;
     const whatsappUrl = `https://wa.me/${
       personalInfo.whatsapp
     }?text=${encodeURIComponent(message)}`;
@@ -42,28 +45,26 @@ export default function Contact() {
   };
 
   const handleWhatsAppDirect = () => {
-    const message = encodeURIComponent(
-      "Hola! Me gustaría hablar contigo sobre un proyecto."
-    );
+    const message = encodeURIComponent(t('contact.contactDirectlyMsg'));
     window.open(`https://wa.me/${personalInfo.whatsapp}?text=${message}`, "_blank");
   };
 
   const contactMethods = [
     {
       icon: Mail,
-      label: "Email",
+      label: t('contact.email'),
       value: personalInfo.email,
       href: `mailto:${personalInfo.email}`,
     },
     {
       icon: Phone,
-      label: "Teléfono",
+      label: t('contact.phone'),
       value: personalInfo.phone,
       href: `tel:${personalInfo.phone}`,
     },
     {
       icon: MapPin,
-      label: "Ubicación",
+      label: t('contact.location'),
       value: personalInfo.location,
       href: null,
     },
@@ -84,10 +85,9 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Contacto</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('contact.title')}</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            ¿Tienes un proyecto en mente? ¡Hablemos! Estoy disponible para
-            proyectos freelance y colaboraciones.
+            {t('contact.subtitle')}
           </p>
         </motion.div>
 
@@ -101,7 +101,7 @@ export default function Contact() {
             <Card>
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-4">
-                  Envíame un mensaje
+                  {t('contact.sendMessage')}
                 </h3>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
@@ -109,7 +109,7 @@ export default function Contact() {
                       htmlFor="name"
                       className="block text-sm font-medium mb-2"
                     >
-                      Nombre
+                      {t('contact.name')}
                     </label>
                     <input
                       type="text"
@@ -119,7 +119,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-2 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring"
-                      placeholder="Tu nombre"
+                      placeholder={t('contact.namePlaceholder')}
                     />
                   </div>
 
@@ -128,7 +128,7 @@ export default function Contact() {
                       htmlFor="email"
                       className="block text-sm font-medium mb-2"
                     >
-                      Email
+                      {t('contact.email')}
                     </label>
                     <input
                       type="email"
@@ -138,7 +138,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-2 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring"
-                      placeholder="tu@email.com"
+                      placeholder={t('contact.emailPlaceholder')}
                     />
                   </div>
 
@@ -147,7 +147,7 @@ export default function Contact() {
                       htmlFor="message"
                       className="block text-sm font-medium mb-2"
                     >
-                      Mensaje
+                      {t('contact.message')}
                     </label>
                     <textarea
                       id="message"
@@ -157,13 +157,13 @@ export default function Contact() {
                       required
                       rows="5"
                       className="w-full px-4 py-2 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-ring resize-none"
-                      placeholder="Cuéntame sobre tu proyecto..."
+                      placeholder={t('contact.messagePlaceholder')}
                     />
                   </div>
 
                   <Button type="submit" className="w-full gap-2">
                     <Send className="w-4 h-4" />
-                    Enviar por WhatsApp
+                    {t('contact.sendWhatsApp')}
                   </Button>
                 </form>
 
@@ -176,7 +176,7 @@ export default function Contact() {
                     onClick={handleWhatsAppDirect}
                   >
                     <MessageCircle className="w-4 h-4" />
-                    Contactar directamente por WhatsApp
+                    {t('contact.contactDirectly')}
                   </Button>
                 </div>
               </CardContent>
@@ -194,7 +194,7 @@ export default function Contact() {
             <Card>
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-4">
-                  Información de Contacto
+                  {t('contact.contactInfo')}
                 </h3>
                 <div className="space-y-4">
                   {contactMethods.map((method) => (
@@ -226,7 +226,7 @@ export default function Contact() {
             {/* Social Media */}
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-4">Redes Sociales</h3>
+                <h3 className="text-xl font-semibold mb-4">{t('contact.socialMedia')}</h3>
                 <div className="flex gap-4">
                   {socialMedia.map((social) => (
                     <a
@@ -248,16 +248,15 @@ export default function Contact() {
             <Card className="bg-primary/5 border-primary/20">
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-2">
-                  Disponibilidad
+                  {t('contact.availability')}
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  Actualmente disponible para proyectos freelance. Respondo
-                  típicamente en 24 horas.
+                  {t('contact.availabilityDesc')}
                 </p>
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
                   <span className="text-sm font-medium text-green-600 dark:text-green-400">
-                    Disponible para nuevos proyectos
+                    {t('contact.availableForProjects')}
                   </span>
                 </div>
               </CardContent>
