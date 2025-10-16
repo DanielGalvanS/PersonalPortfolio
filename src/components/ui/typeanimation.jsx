@@ -9,14 +9,16 @@ const Typeanimation = ({
   typingSpeed = 50,
   deletingSpeed = 50,
   pauseDuration = 1000,
-  gradientFrom = "blue-500",
-  gradientTo = "purple-600",
+  gradientColors = "linear-gradient(to right, #3b82f6, #a855f7)"
 }) => {
   const sequence = words.flatMap((word) => [word, pauseDuration]);
 
   return (
     <motion.span
-      className={cn("inline-block", className)}
+      className={cn("bg-clip-text text-transparent typewriter-cursor", className)}
+      style={{
+        backgroundImage: gradientColors
+      }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -25,7 +27,7 @@ const Typeanimation = ({
         sequence={sequence}
         wrapper="span"
         repeat={Infinity}
-        style={{ display: 'inline-block' }}
+        cursor={false}
         speed={typingSpeed}
         deletionSpeed={deletingSpeed}
       />

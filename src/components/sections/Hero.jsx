@@ -42,15 +42,16 @@ export default function Hero() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
                 {personalInfo.name}
               </h1>
-              <h2 className="text-2xl md:text-3xl text-transparent">
+              
               <Typeanimation
                 words={['Software Engineer', 'Full Stack Developer', 'React Developer', 'UI/UX Designer', 'Mobile Developer']}
                 typingSpeed="slow"
                 deletingSpeed="slow"
                 pauseDuration={2000}
-                className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 dark:from-pink-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text typewriter-cursor"
+                gradientColors="linear-gradient(to right, #ec4899, #a855f7, #6366f1)"
+                className="text-3xl md:text-5xl font-extrabold"
               />
-              </h2>
+              
             </motion.div>
 
             <motion.p

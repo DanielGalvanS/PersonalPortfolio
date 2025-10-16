@@ -105,16 +105,17 @@ html {
   content: '|';
   display: inline-block;
   margin-left: 0px;
-  background: linear-gradient(to bottom, #ec4899, #a855f7, #6366f1);
+  background: linear-gradient(to right, #ec4899, #a855f7, #6366f1);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: blink 1s infinite;
   font-weight: bold;
+  font-size: inherit;
 }
 
 .dark .typewriter-cursor::after {
-  background: linear-gradient(to bottom, #f9a8d4, #c084fc, #818cf8);
+  background: linear-gradient(to right, #f9a8d4, #c084fc, #818cf8);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
