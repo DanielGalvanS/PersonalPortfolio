@@ -26,7 +26,7 @@ export default function Hero() {
       className="min-h-screen flex items-center justify-center section-padding pt-24"
     >
       <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -102,18 +102,18 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative hidden lg:flex items-center justify-center"
+            className="relative hidden lg:flex justify-center"
           >
-            <div className="relative w-[400px] h-[400px]">
+            <div className="relative w-[400px] h-[400px] -mt-28">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full blur-3xl" />
-              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-border bg-accent flex items-center justify-center">
-                <img src="/daniel.JPG" alt="Profile Pic" />
+              <div className="relative w-full rounded-full overflow-hidden border-4 border-border bg-accent flex items-center justify-center">
+                <img src="/daniel.JPG" alt="Profile Picture"/>
               </div>
 
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 -right-4 w-20 h-20 bg-secondary rounded-lg flex items-center justify-center shadow-lg hover:bg-primary hover:text-primary-foreground transition-all cursor-pointer"
+                className="absolute -top-2 -right-1 w-20 h-20 bg-secondary rounded-lg flex items-center justify-center shadow-lg hover:bg-primary hover:text-primary-foreground transition-all cursor-pointer"
               >
                 <a
                   href={socialLinks.github}
@@ -129,7 +129,7 @@ export default function Hero() {
               <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute -bottom-4 -left-4 w-20 h-20 bg-secondary rounded-lg flex items-center justify-center shadow-lg hover:bg-primary hover:text-primary-foreground transition-all cursor-pointer"
+                className="absolute -bottom-48 -left-1 w-20 h-20 bg-secondary rounded-lg flex items-center justify-center shadow-lg hover:bg-primary hover:text-primary-foreground transition-all cursor-pointer"
               >
                 <a
                   href={socialLinks.linkedin}
