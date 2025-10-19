@@ -135,6 +135,23 @@ const resources = {
         alwaysLearningDesc: "La tecnología evoluciona constantemente y yo también. Estoy siempre explorando nuevas herramientas y mejorando mis habilidades para ofrecer las mejores soluciones.",
         techStack: "Stack Tecnológico Completo",
       },
+      featuredProject: {
+        badge: "Proyecto Destacado",
+        subtitle: "Guía Interactiva de Museo Impulsada por IA",
+        description: "Una experiencia inmersiva que combina inteligencia artificial con tecnología móvil para transformar la manera en que los visitantes exploran el museo Horno 3.",
+        feature1: {
+          title: "IA con GPT-4",
+          description: "Genera contenido en tiempo real y responde preguntas sobre las exhibiciones usando procesamiento de lenguaje natural.",
+        },
+        feature2: {
+          title: "Reconocimiento Visual",
+          description: "Core ML identifica secciones del museo automáticamente para ofrecer información contextual instantánea.",
+        },
+        feature3: {
+          title: "Experiencia Nativa iOS",
+          description: "Diseñada con SwiftUI, ofrece tours personalizados, modo offline y sincronización en tiempo real.",
+        },
+      },
       contact: {
         title: "Contacto",
         subtitle: "¿Tienes un proyecto en mente? ¡Hablemos! Estoy disponible para proyectos freelance y colaboraciones.",
@@ -290,6 +307,23 @@ const resources = {
         alwaysLearning: "Always Learning",
         alwaysLearningDesc: "Technology is constantly evolving and so am I. I'm always exploring new tools and improving my skills to deliver the best solutions.",
         techStack: "Complete Tech Stack",
+      },
+      featuredProject: {
+        badge: "Featured Project",
+        subtitle: "AI-Powered Interactive Museum Guide",
+        description: "An immersive experience combining artificial intelligence with mobile technology to transform how visitors explore the Horno 3 museum.",
+        feature1: {
+          title: "AI with GPT-4",
+          description: "Generates real-time content and answers questions about exhibitions using natural language processing.",
+        },
+        feature2: {
+          title: "Visual Recognition",
+          description: "Core ML automatically identifies museum sections to provide instant contextual information.",
+        },
+        feature3: {
+          title: "Native iOS Experience",
+          description: "Built with SwiftUI, offers personalized tours, offline mode, and real-time synchronization.",
+        },
       },
       contact: {
         title: "Contact",

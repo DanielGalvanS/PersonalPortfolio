@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
+import FeaturedProject from "@/components/sections/FeaturedProject";
 import About from "@/components/sections/About";
 import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
@@ -25,6 +26,7 @@ function App() {
           transition={{ duration: 0.3, ease: "easeInOut" }}
         >
           <Hero />
+          <FeaturedProject />
           <About />
           <Experience />
           <Projects />
