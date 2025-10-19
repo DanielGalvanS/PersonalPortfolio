@@ -107,7 +107,12 @@ export default function Hero() {
             <div className="relative w-[400px] h-[400px] -mt-28">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full blur-3xl" />
               <div className="relative w-full rounded-full overflow-hidden border-4 border-border bg-accent flex items-center justify-center">
-                <img src="/daniel.JPG" alt="Profile Picture"/>
+              <img
+                src="/daniel.webp"
+                loading="eager"      
+                fetchpriority="high"   
+                decoding="async"       
+              />
               </div>
 
               <motion.div
