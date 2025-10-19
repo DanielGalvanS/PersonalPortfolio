@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail, MessageCircle } from "lucide-react";
 import Button from "../ui/Button";
@@ -7,6 +8,7 @@ import Typeanimation from '@/components/ui/typeanimation';
 
 export default function Hero() {
   const { t } = useTranslation();
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -107,7 +109,15 @@ export default function Hero() {
             <div className="relative w-[400px] h-[400px] -mt-28">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full blur-3xl" />
               <div className="relative w-full rounded-full overflow-hidden border-4 border-border bg-accent flex items-center justify-center">
-                <img src="/daniel.webp" alt="Profile Picture"/>
+                {!imageLoaded && (
+                  <div className="absolute inset-0 bg-gradient-to-br from-muted to-muted-foreground/10 animate-pulse" />
+                )}
+                <img
+                  src="/daniel.webp"
+                  alt="Profile Picture"
+                  onLoad={() => setImageLoaded(true)}
+                  className={`transition-opacity duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                />
               </div>
 
               <motion.div
