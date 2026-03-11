@@ -92,12 +92,22 @@ export default {
       },
       fontFamily: {
         sans: [
+          '"Inter"',
           '-apple-system',
           'BlinkMacSystemFont',
           '"Segoe UI"',
           '"Helvetica Neue"',
           'Arial',
           'sans-serif',
+        ],
+        serif: [
+          '"Playfair Display"',
+          'ui-serif',
+          'Georgia',
+          'Cambria',
+          '"Times New Roman"',
+          'Times',
+          'serif',
         ],
         mono: [
           '"SF Mono"',

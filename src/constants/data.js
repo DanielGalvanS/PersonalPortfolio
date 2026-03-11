@@ -1,20 +1,13 @@
-export const navLinks = [
-  { id: "home", label: "Inicio" },
-  { id: "about", label: "Sobre Mí" },
-  { id: "experience", label: "Experiencia" },
-  { id: "projects", label: "Proyectos" },
-  { id: "skills", label: "Habilidades" },
-  { id: "contact", label: "Contacto" },
-];
+export const navLinks = [];
 
 export const personalInfo = {
   name: "Daniel Galván",
-  title: "Software Engineer & Full Stack Developer",
+  title: "Software Engineer",
   location: "Monterrey, Nuevo León, México",
   email: "dggalvans@gmail.com",
   phone: "+52 81 2200 6817",
   whatsapp: "+528122006817",
-  bio: "Estudiante de Ingenieria en Tecnologías Computacionales en el Tec de Monterrey con experiencia en desarrollo full stack. Apasionado por crear soluciones innovadoras que impactan positivamente en las organizaciones.",
+  bio: "Me gusta diseñar y crear software útil para que la gente lo use.",
   avatar: "/avatar.jpg",
   education: {
     institution: "Tecnológico de Monterrey",

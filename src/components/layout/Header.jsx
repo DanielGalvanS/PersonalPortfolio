@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
@@ -21,31 +21,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-      setIsDark(true);
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    if (isDark) {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    }
-  };
-
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'es' ? 'en' : 'es';
-    i18n.changeLanguage(newLang);
-  };
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -57,8 +32,8 @@ export default function Header() {
 
   const downloadCV = () => {
     const link = document.createElement('a');
-    link.href = '/Daniel_CV.pdf';
-    link.download = 'Daniel_CV.pdf';
+    link.href = '/Daniel Resume.pdf';
+    link.download = 'Daniel Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -67,13 +42,13 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 w-[95%] max-w-5xl rounded-[2rem]",
+        "fixed top-0 left-0 w-full z-50 transition-all duration-300",
         isScrolled || isMobileMenuOpen
-          ? "bg-bento/70 dark:bg-bento-dark/70 backdrop-blur-lg border border-bento-border/50 dark:border-bento-darkBorder/50 shadow-lg"
-          : "bg-transparent"
+          ? "bg-background/90 backdrop-blur-xl border-b border-border shadow-sm py-2"
+          : "bg-transparent py-4"
       )}
     >
-      <nav className="px-6 py-2">
+      <nav className="container-custom">
         <div className="flex items-center justify-between h-12">
           <button
             onClick={() => scrollToSection("home")}
@@ -83,98 +58,78 @@ export default function Header() {
           </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
+          <div className="hidden md:flex items-center gap-6">
+            <div className="flex items-center gap-4">
+              {navLinks.map((link) => (
+                <button
+                  key={link.id}
+                  onClick={() => scrollToSection(link.id)}
+                  className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors font-medium"
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={`${link.id}-${i18n.language}`}
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {t(`nav.${link.id}`)}
+                    </motion.span>
+                  </AnimatePresence>
+                </button>
+              ))}
               <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
-                className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                onClick={() => setIsAboutOpen(true)}
+                className="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors font-medium ml-4"
               >
+                About
+              </button>
+            </div>
+
+            <div className="flex items-center gap-4 pl-6 border-l border-border">
+              {/* CV toggle*/}
+              <button
+                className="group flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-foreground hover:text-primary transition-colors ml-2"
+                onClick={downloadCV}
+              >
+                <Download className="w-3.5 h-3.5 group-hover:-translate-y-1 transition-transform" />
                 <AnimatePresence mode="wait">
                   <motion.span
-                    key={`${link.id}-${i18n.language}`}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
+                    key={`cv-${i18n.language}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    {t(`nav.${link.id}`)}
+                    {t('nav.downloadCV', { defaultValue: 'CV' })}
                   </motion.span>
                 </AnimatePresence>
               </button>
-            ))}
-
-            {/* Language Toggle */}
-            <button
-              onClick={toggleLanguage}
-              className="ml-2 px-2 py-1 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors border border-border rounded-md hover:bg-accent"
-              aria-label="Toggle language"
-              title={i18n.language === "es" ? "Switch to English" : "Cambiar a Español"}
-            >
-              {i18n.language === "es" ? "EN" : "ES"}
-            </button>
-
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className="ml-1 p-1.5 text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Toggle theme"
-            >
-              {isDark ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-
-            {/* CV toggle*/}
-            <Button variant="default" className="ml-4 rounded-full" onClick={downloadCV}>
-              <span><Download className="w-4 h-4"/></span>
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={`cv-${i18n.language}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {t('nav.downloadCV')}
-                </motion.span>
-              </AnimatePresence>
-            </Button>
+            </div>
           </div>
 
-          {/* Mobile Menu Button & Options (Reordered for visual balance) */}
-          <div className="flex items-center gap-1 md:hidden">
-            <button
-              onClick={toggleLanguage}
-              className="px-2 py-1 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors border border-border rounded-md"
-              aria-label="Toggle language"
-            >
-              {i18n.language === "es" ? "EN" : "ES"}
-            </button>
-            <button
-              onClick={toggleTheme}
-              className="p-1.5 text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Toggle theme"
-            >
-              {isDark ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
+          {/* Mobile Menu Button & Options */}
+          <div className="flex items-center gap-4 md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-1.5 text-muted-foreground hover:text-foreground transition-colors"
+              className="text-foreground transition-colors ml-2"
               aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border animate-fade-in">
-            <div className="flex flex-col gap-1">
+          <div className="md:hidden py-8 border-t border-border mt-4 animate-fade-in bg-background h-screen">
+            <div className="flex flex-col gap-6 items-center border-b border-border pb-8">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
-                  className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition-colors text-left rounded-md"
+                  className="text-2xl font-serif italic text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <AnimatePresence mode="wait">
                     <motion.span
@@ -189,10 +144,87 @@ export default function Header() {
                   </AnimatePresence>
                 </button>
               ))}
+              <button
+                onClick={() => { setIsMobileMenuOpen(false); setIsAboutOpen(true); }}
+                className="text-2xl font-serif italic text-muted-foreground hover:text-foreground transition-colors"
+              >
+                About
+              </button>
+            </div>
+
+            <div className="flex justify-center mt-8">
+              <button
+                className="group flex items-center gap-2 text-sm font-mono uppercase tracking-widest text-foreground hover:text-primary transition-colors"
+                onClick={downloadCV}
+              >
+                <Download className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
+                <span>{t('nav.downloadCV', { defaultValue: 'Download CV' })}</span>
+              </button>
             </div>
           </div>
         )}
       </nav>
+
+      {/* About Drawer */}
+      <AnimatePresence>
+        {isAboutOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsAboutOpen(false)}
+              className="fixed inset-0 bg-background/80 backdrop-blur-sm z-[100]"
+            />
+
+            {/* Drawer Panel */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 w-[90%] md:w-[450px] lg:w-[500px] h-full bg-background border-l border-border z-[101] flex flex-col p-8 lg:p-12 overflow-y-auto"
+            >
+              {/* Top bar */}
+              <div className="flex justify-between items-center mb-12 shrink-0">
+                <img src="/daniel-optimized.webp" alt="Daniel" className="w-12 h-12 rounded-full grayscale object-cover" />
+                <button
+                  onClick={() => setIsAboutOpen(false)}
+                  className="px-6 py-2 rounded-full border border-border text-sm font-sans hover:bg-foreground/5 transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+
+              {/* Content */}
+              <div className="flex flex-col gap-8 text-foreground mt-8">
+                <h2 className="text-2xl md:text-3xl font-sans leading-[1.3] text-foreground/90">
+                  {t("about.greeting", { defaultValue: "Hola, soy ingeniero de software basado en México." })}
+                </h2>
+
+                <p className="text-base text-muted-foreground leading-relaxed">
+                  Estudiante de Ingeniería en Tecnologías Computacionales en el Tec de Monterrey con experiencia en desarrollo full stack. Me apasiona crear soluciones innovadoras que impactan positivamente en las organizaciones. Busco la convergencia entre diseño funcional y arquitectura robusta.
+                </p>
+
+                <div className="mt-8 border-t border-border/10 pt-8">
+                  <h3 className="text-xl font-sans mb-4 text-foreground/80">
+                    {t("about.experienceTitle", { defaultValue: "Experiencia Destacada" })}
+                  </h3>
+                  <div className="flex flex-col gap-4">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Me especializo en crear sistemas robustos y eficientes. He trabajado en proyectos complejos desarrollando arquitecturas y soluciones con AWS, React, Python y .NET.
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Siempre dispuesto a aprender algo nuevo e implementarlo en la realidad para resolver problemas reales. Fuera del código me gusta el hiking, viajar y explorar nuevas ideas.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

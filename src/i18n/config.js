@@ -15,8 +15,8 @@ const resources = {
       },
       hero: {
         greeting: "Hola, soy",
-        title: "Software Engineer & Full Stack Developer",
-        bio: "Estudiante de Ingenieria en Tecnologías Computacionales en el Tec de Monterrey con experiencia en desarrollo full stack. Apasionado por crear soluciones innovadoras que impactan positivamente en las organizaciones.",
+        title: "Software Engineer",
+        bio: "Me gusta diseñar y crear software útil para que la gente lo use.",
         viewProjects: "Ver Proyectos",
         contactMe: "Contáctame",
         whatsapp: "WhatsApp",
@@ -187,9 +187,9 @@ const resources = {
         downloadCV: "Download CV",
       },
       hero: {
-        greeting: "Hello, I'm",
-        title: "Software Engineer & Full Stack Developer",
-        bio: "Computer Science student at Tec de Monterrey with experience in full stack development. Passionate about creating innovative solutions that positively impact organizations.",
+        greeting: "Hello, I'm a",
+        title: "Software Engineer",
+        bio: "Designing and building intuitive, user-centric software.",
         viewProjects: "View Projects",
         contactMe: "Contact Me",
         whatsapp: "WhatsApp",
@@ -354,8 +354,8 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'es',
-    fallbackLng: 'es',
+    lng: 'en',
+    fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
     },

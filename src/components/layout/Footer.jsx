@@ -1,28 +1,29 @@
 import { Github, Linkedin, Twitter, Mail, Heart } from "lucide-react";
 import { socialLinks, personalInfo } from "@/constants/data";
+import { useTranslation } from 'react-i18next';
 
 export default function Footer() {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   const socialIcons = {
     github: Github,
-    linkedin: Linkedin,
     twitter: Twitter,
   };
 
   return (
-    <footer className="mt-20 mb-8 max-w-5xl mx-auto w-[95%]">
-      <div className="bg-bento/50 border border-bento-border/50 dark:bg-bento-dark/50 dark:border-bento-darkBorder/50 rounded-[2rem] p-8 backdrop-blur-md">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+    <footer className="w-full border-t border-border bg-background py-4 lg:py-6 relative z-50">
+      <div className="container-custom">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Brand & Copyright */}
-          <div className="flex items-center gap-2">
-            <p className="text-sm text-muted-foreground font-mono">
-              © {currentYear} DG
+          <div className="flex items-center">
+            <p className="text-xs md:text-sm text-muted-foreground font-mono uppercase tracking-widest">
+              © {currentYear} Daniel Galvan. {t('footer.rights', { defaultValue: 'All rights reserved.' })}
             </p>
           </div>
 
           {/* Social Links */}
-          <div className="flex gap-4">
+          <div className="flex gap-8">
             {Object.entries(socialLinks).map(([key, url]) => {
               const Icon = socialIcons[key];
               if (!Icon) return null;
@@ -33,19 +34,19 @@ export default function Footer() {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground hover:-translate-y-1 transition-all duration-300"
                   aria-label={key}
                 >
-                  <Icon size={18} />
+                  <Icon className="w-5 h-5" />
                 </a>
               );
             })}
             <a
               href={`mailto:${personalInfo.email}`}
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground hover:text-foreground hover:-translate-y-1 transition-all duration-300"
               aria-label="email"
             >
-              <Mail size={18} />
+              <Mail className="w-5 h-5" />
             </a>
           </div>
         </div>
