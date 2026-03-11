@@ -8,16 +8,20 @@ import { useTranslation } from "react-i18next";
 export default function Hero() {
   const { t } = useTranslation();
   const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const wrapperRef = useRef(null);
   const hasScrolledUp = useRef(false);
 
-  // Reset state when overlay opens
+  // Reset state when overlay opens + signal to header
   useEffect(() => {
     if (selectedProject) {
       hasScrolledUp.current = false;
+      document.documentElement.setAttribute('data-overlay', 'true');
       if (wrapperRef.current) {
         wrapperRef.current.scrollTop = 0;
       }
+    } else {
+      document.documentElement.removeAttribute('data-overlay');
     }
   }, [selectedProject]);
 
@@ -90,10 +94,10 @@ export default function Hero() {
         </div>
 
         <div className="flex flex-col w-full border-t border-border/10">
-          {projects.map((project) => (
+          {projects.map((project, idx) => (
             <div
               key={project.id}
-              onClick={() => setSelectedProject(project)}
+              onClick={() => { setSelectedProject(project); setSelectedIndex(idx); }}
               className="group relative flex items-center justify-between py-6 lg:py-8 cursor-pointer overflow-hidden"
             >
               <span className="absolute bottom-0 left-0 w-full h-[1px] bg-border/60 z-0"></span>
@@ -135,31 +139,65 @@ export default function Hero() {
                 {/* Transparent spacer: 50vh — panel appears at mid-screen */}
                 <div className="w-full" style={{ height: "50vh" }} />
 
-                {/* Project content panel */}
+                {/* Project content panel — DARK theme */}
                 <motion.div
                   initial={{ y: 80, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.9, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
-                  className="relative bg-background rounded-t-2xl shadow-[0_-8px_40px_rgba(0,0,0,0.15)] min-h-screen"
+                  className="relative bg-neutral-950 shadow-[0_-8px_40px_rgba(0,0,0,0.4)] min-h-screen"
                 >
-                  {/* Close bar */}
-                  <div className="sticky top-0 w-full px-6 lg:px-16 py-5 flex items-center justify-between z-50 bg-background/95 backdrop-blur-sm border-b border-border/10 rounded-t-2xl">
-                    <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
-                      {selectedProject.title.split(" – ")[0]}
-                    </span>
-                    <button
-                      onClick={() => setSelectedProject(null)}
-                      className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      <X className="w-4 h-4" /> Close
-                    </button>
-                  </div>
+                  {/* Content — vlockn-style layout */}
+                  <div className="px-6 lg:px-16 pt-20 pb-32 w-full">
 
-                  {/* Content */}
-                  <div className="px-6 lg:px-24 pt-12 pb-32 max-w-5xl mx-auto">
+                    {/* Top section: counter + title + skills */}
+                    <div className="flex flex-col lg:flex-row justify-between items-start gap-8 mb-16 lg:mb-24">
+                      
+                      {/* Left: counter + title */}
+                      <div className="flex-1 max-w-2xl">
+                        {/* Project counter */}
+                        <p className="text-sm font-mono text-neutral-500 mb-8">
+                          <span className="text-white">{String(selectedIndex + 1).padStart(2, '0')}</span>
+                          <span> / {String(projects.length).padStart(2, '0')}</span>
+                        </p>
 
-                    {/* Hero image */}
-                    <div className="w-full aspect-[16/9] overflow-hidden mb-16 bg-foreground/5">
+                        {/* Big title */}
+                        <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-serif tracking-tight text-white leading-[1.1] mb-12">
+                          {selectedProject.title}
+                        </h1>
+
+                        {/* Meta row: Project / Role / Date */}
+                        <div className="flex flex-wrap gap-x-16 gap-y-4">
+                          <div>
+                            <p className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 mb-1">Project</p>
+                            <p className="text-sm font-sans text-white">{selectedProject.title.split(" – ")[0]}</p>
+                          </div>
+                          {selectedProject.role && (
+                            <div>
+                              <p className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 mb-1">Role</p>
+                              <p className="text-sm font-sans text-white">{selectedProject.role}</p>
+                            </div>
+                          )}
+                          {selectedProject.year && (
+                            <div>
+                              <p className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 mb-1">Date</p>
+                              <p className="text-sm font-sans text-white">{selectedProject.year}</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Right: tech/skill pills */}
+                      <div className="flex flex-row lg:flex-col flex-wrap gap-2 lg:items-end lg:pt-16">
+                        {selectedProject.technologies.map((tech) => (
+                          <span key={tech} className="px-4 py-1.5 text-[11px] font-mono uppercase tracking-wider border border-white/20 rounded-full text-white">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Hero image — contained, not full-bleed */}
+                    <div className="w-full max-w-4xl mx-auto aspect-[16/9] overflow-hidden bg-white/5 rounded-md mb-20">
                       <img
                         src={selectedProject.image || "/FigmaFundidora.png"}
                         alt={selectedProject.title}
@@ -167,56 +205,29 @@ export default function Hero() {
                       />
                     </div>
 
-                    {/* Meta row */}
-                    <div className="flex flex-wrap gap-x-12 gap-y-4 mb-12 pb-12 border-b border-border/10">
-                      <div>
-                        <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-1">Project</p>
-                        <p className="text-sm font-sans text-foreground">{selectedProject.title.split(" – ")[0]}</p>
-                      </div>
-                      {selectedProject.role && (
-                        <div>
-                          <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-1">Role</p>
-                          <p className="text-sm font-sans text-foreground">{selectedProject.role}</p>
+                    {/* Description + links */}
+                    <div className="max-w-5xl mx-auto">
+                      <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 mb-12">
+                        <div className="lg:w-3/5">
+                          <p className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 mb-4">Overview</p>
+                          <p className="text-base lg:text-lg text-neutral-300 leading-relaxed">
+                            {selectedProject.description}
+                          </p>
                         </div>
-                      )}
-                      {selectedProject.year && (
-                        <div>
-                          <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-1">Year</p>
-                          <p className="text-sm font-sans text-foreground">{selectedProject.year}</p>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Title + Description */}
-                    <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
-                      <div className="lg:w-1/2">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight text-foreground leading-[1.1] mb-8">
-                          {selectedProject.title}
-                        </h1>
-                        <div className="flex gap-4 flex-wrap">
-                          {selectedProject.githubUrl && (
-                            <a href={selectedProject.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest border border-border/30 px-4 py-2 hover:bg-foreground hover:text-background transition-all">
-                              <Github className="w-3.5 h-3.5" /> GitHub
-                            </a>
-                          )}
-                          {selectedProject.galleryUrl && (
-                            <a href={selectedProject.galleryUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest border border-border/30 px-4 py-2 hover:bg-foreground hover:text-background transition-all">
-                              <ExternalLink className="w-3.5 h-3.5" /> Live
-                            </a>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="lg:w-1/2 flex flex-col gap-8">
-                        <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
-                          {selectedProject.description}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {selectedProject.technologies.map((tech) => (
-                            <span key={tech} className="px-3 py-1 text-xs font-mono uppercase bg-foreground/5 border border-border/20 text-muted-foreground">
-                              {tech}
-                            </span>
-                          ))}
+                        <div className="lg:w-2/5 flex flex-col gap-6">
+                          <p className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 mb-1">Links</p>
+                          <div className="flex gap-3 flex-wrap">
+                            {selectedProject.githubUrl && (
+                              <a href={selectedProject.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest border border-white/20 text-neutral-300 px-5 py-2.5 rounded-full hover:bg-white hover:text-neutral-950 transition-all">
+                                <Github className="w-3.5 h-3.5" /> GitHub
+                              </a>
+                            )}
+                            {selectedProject.galleryUrl && (
+                              <a href={selectedProject.galleryUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest border border-white/20 text-neutral-300 px-5 py-2.5 rounded-full hover:bg-white hover:text-neutral-950 transition-all">
+                                <ExternalLink className="w-3.5 h-3.5" /> Live
+                              </a>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>

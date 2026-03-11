@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { socialLinks, personalInfo } from "@/constants/data";
 import { useTranslation } from 'react-i18next';
 
@@ -8,7 +8,7 @@ export default function Footer() {
 
   const socialIcons = {
     github: Github,
-    twitter: Twitter,
+    linkedin: Linkedin,
   };
 
   return (

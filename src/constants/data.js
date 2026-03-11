@@ -20,7 +20,6 @@ export const personalInfo = {
 export const socialLinks = {
   github: "https://github.com/danielgalvans",
   linkedin: "https://www.linkedin.com/in/danielgalvans/",
-  twitter: "",
   portfolio: "",
 };
 
@@ -29,14 +28,14 @@ export const experience = [
     id: 1,
     company: "The Home Depot",
     position: "Software Engineer Intern",
-    period: "Ene 2025 - Presente",
+    period: "Jan 2025 - Present",
     location: "Monterrey, N.L.",
-    description: "Contribución al Store Management System (SMS), mejorando la integración entre sistemas POS y módulos web internos.",
+    description: "Contributing to the Store Management System (SMS), enhancing integration between POS systems and internal web modules.",
     achievements: [
-      "Lideré el desarrollo de un sistema de registro de instalaciones que automatizó más de 300 flujos de trabajo mensuales, mejorando la precisión y reduciendo el tiempo de entrada manual en un 100%",
-      "Desarrollé y desplegué múltiples funcionalidades frontend y backend, colaborando con product owners para definir requisitos, escribir APIs eficientes e implementar UIs responsivas",
-      "Optimicé operaciones de base de datos, diseñé flujos UX en Figma y realicé sesiones UAT antes del despliegue nacional",
-      "Entregué actualizaciones del sistema basadas en sprints bajo Agile/Scrum, gestionando procesos CI/CD en Azure DevOps y Git",
+      "Led the development of an installation logging system that automated 300+ monthly workflows, improving accuracy and reducing manual entry time by 100%",
+      "Developed and deployed multiple frontend and backend features, collaborating with product owners to define requirements, write efficient APIs, and implement responsive UIs",
+      "Optimized database operations, designed UX flows in Figma, and conducted UAT sessions before national rollout",
+      "Delivered sprint-based system updates under Agile/Scrum, managing CI/CD processes in Azure DevOps and Git",
     ],
     technologies: ["C#", ".NET", "React", "SQL Server", "Azure DevOps", "Figma"],
   },
@@ -44,12 +43,12 @@ export const experience = [
     id: 2,
     company: "Tecnológico de Monterrey",
     position: "On Campus Intern – Media Analytics",
-    period: "Ago 2024 - Feb 2025",
+    period: "Aug 2024 - Feb 2025",
     location: "Monterrey, N.L.",
-    description: "Monitoreo y análisis del desempeño en redes sociales de la universidad.",
+    description: "Monitoring and analyzing the university's social media performance.",
     achievements: [
-      "Monitoreé el desempeño de redes sociales con Brandwatch y Sprinklr, desarrollando estrategias que aumentaron el engagement y el crecimiento de seguidores",
-      "Produje reportes analíticos mensuales sobre tendencias digitales, sentimiento de marca y posicionamiento competitivo",
+      "Monitored social media performance with Brandwatch and Sprinklr, developing strategies that increased engagement and follower growth",
+      "Produced monthly analytical reports on digital trends, brand sentiment, and competitive positioning",
     ],
     technologies: ["Brandwatch", "Sprinklr", "Data Analysis", "Social Media"],
   },
@@ -59,7 +58,7 @@ export const projects = [
   {
     id: 1,
     title: "Kia Life – Onboarding App",
-    description: "Plataforma de onboarding de tres meses para Kia Motors con tareas por fases, verificación dual entre empleados y administradores, y notificaciones automatizadas. Incluye entorno gamificado con Unity que recompensa a empleados con artículos virtuales y leaderboard. 🏆 Ganador 1er lugar KMX Young Innovator Award",
+    description: "Three-month onboarding platform for Kia Motors with phased tasks, dual verification between employees and administrators, and automated notifications. Includes a gamified Unity environment that rewards employees with virtual items and a leaderboard. 🏆 1st Place KMX Young Innovator Award",
     image: "/KIA.JPG",
     technologies: ["React.js", "Node.js", "SQL Server", "AWS", "Unity"],
     liveUrl: "",
@@ -67,13 +66,13 @@ export const projects = [
     galleryUrl: "https://drive.google.com/drive/folders/1IA5h13OoS4fTzscZtBAZAoHngo7uCBms?usp=sharing", 
     featured: true,
     category: "Full Stack",
-    award: "1er Lugar KMX Young Innovator Award",
-    period: "Ago 2024 – Oct 2024"
+    award: "1st Place KMX Young Innovator Award",
+    period: "Aug 2024 – Oct 2024"
   },
   {
     id: 2,
     title: "Horno 3 – Interactive Museum App",
-    description: "Guía de museo impulsada por IA usando Core ML + GPT-4 para generación de contenido en tiempo real y reconocimiento de secciones. Backend seguro con Supabase, autenticación JWT, APIs RESTful y sincronización en tiempo real entre plataformas web y móviles. Experiencia iOS interactiva con modo offline, tours personalizados y dashboards de analytics.",
+    description: "AI-powered museum guide using Core ML + GPT-4 for real-time content generation and section recognition. Secure backend with Supabase, JWT authentication, RESTful APIs, and real-time synchronization between web and mobile platforms. Interactive iOS experience with offline mode, personalized tours, and analytics dashboards.",
     image: "/FigmaFundidora.png",
     technologies: ["SwiftUI", "Core ML", "GPT-4", "Supabase", "Next.js"],
     liveUrl: "",
@@ -81,12 +80,12 @@ export const projects = [
     galleryUrl: "https://www.canva.com/design/DAG1KF3KdNo/Ubnd-dugkdrFGfM-IsPi4A/edit?utm_content=DAG1KF3KdNo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton", 
     featured: true,
     category: "Full Stack",
-    period: "Abr 2025 – Jun 2025"
+    period: "Apr 2025 – Jun 2025"
   },
   {
     id: 3,
     title: "SecuBank – IoT Security System",
-    description: "Sistema IoT que integra sensores RFID y de movimiento para asegurar bóvedas bancarias con validación de acceso multinivel. Desarrollo de APIs backend e infraestructura de datos para alertas en tiempo real y autenticación de usuarios.",
+    description: "IoT system integrating RFID and motion sensors to secure bank vaults with multilevel access validation. Backend API and data infrastructure development for real-time alerts and user authentication.",
     image: "", 
     technologies: ["Arduino", "MySQL", "REST API"],
     liveUrl: "",
