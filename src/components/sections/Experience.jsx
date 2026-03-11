@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Card, CardContent } from "../ui/Card";
 import Badge from "../ui/Badge";
+import { cn } from "@/lib/utils";
 import { experience as experienceTech } from "@/constants/data";
 import { Briefcase, MapPin, Calendar } from "lucide-react";
 import { useTranslation } from 'react-i18next';
@@ -37,32 +38,21 @@ export default function Experience() {
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
-          {/* Timeline */}
-          <div className="relative">
-            {/* Vertical line */}
-            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-border" />
-
+        <div className="max-w-5xl mx-auto">
+          {/* Bento Grid layout instead of timeline */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {experience.map((job, index) => (
               <motion.div
                 key={job.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className={`relative mb-12 ${
-                  index % 2 === 0 ? "md:pr-1/2" : "md:pl-1/2 md:ml-auto"
-                }`}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                className={cn(
+                  "col-span-1",
+                  index === 0 && "md:col-span-2" // First item spans full width
+                )}
               >
-                {/* Timeline dot */}
-                <div
-                  className={`hidden md:block absolute top-6 ${
-                    index % 2 === 0 ? "right-0" : "left-0"
-                  } transform ${
-                    index % 2 === 0 ? "translate-x-1/2" : "-translate-x-1/2"
-                  } w-4 h-4 rounded-full bg-primary border-4 border-background`}
-                />
-
-                <Card className="hover:shadow-lg transition-all">
+                <Card className="h-full flex flex-col bg-bento/40 dark:bg-bento-dark/40 border-bento-border dark:border-bento-darkBorder hover:-translate-y-1 transition-all duration-300">
                   <CardContent className="p-6">
                     {/* Header */}
                     <div className="mb-4">
@@ -118,7 +108,7 @@ export default function Experience() {
                     {/* Technologies */}
                     <div className="flex flex-wrap gap-2">
                       {job.technologies.map((tech) => (
-                        <Badge key={tech} variant="secondary">
+                        <Badge key={tech} variant="secondary" className="bg-background/50 backdrop-blur-sm">
                           {tech}
                         </Badge>
                       ))}

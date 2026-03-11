@@ -98,9 +98,9 @@ export default function Skills() {
           transition={{ duration: 0.3 }}
           className="max-w-4xl mx-auto"
         >
-          <Card>
+          <Card className="bg-bento/40 dark:bg-bento-dark/40 border-bento-border dark:border-bento-darkBorder shadow-lg">
             <CardContent className="p-6 md:p-8">
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-6 relative z-10">
                 {skills[activeTab].map((skill, index) => (
                   <SkillBar
                     key={skill.name}
@@ -120,8 +120,8 @@ export default function Skills() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-12 max-w-3xl mx-auto"
         >
-          <Card className="bg-primary/5 border-primary/20">
-            <CardContent className="p-6 text-center">
+          <Card className="bg-primary/5 dark:bg-primary/10 border-primary/20 bg-bento/40 dark:bg-bento-dark/40 border-bento-border dark:border-bento-darkBorder hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <CardContent className="p-6 text-center relative z-10">
               <h3 className="text-xl font-semibold mb-2">
                 {t('skills.alwaysLearning')}
               </h3>

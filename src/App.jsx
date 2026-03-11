@@ -4,6 +4,7 @@ import { lazy, Suspense } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
+import CustomCursor from "@/components/ui/CustomCursor";
 
 const FeaturedProject = lazy(() => import("@/components/sections/FeaturedProject"));
 const About = lazy(() => import("@/components/sections/About"));
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+      <CustomCursor />
       <Header />
       <AnimatePresence mode="wait">
         <motion.main

@@ -41,11 +41,20 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        bento: {
+          DEFAULT: "hsl(var(--bento-bg, 0 0% 98%))",
+          dark: "hsl(var(--bento-bg-dark, 240 5% 10%))",
+          border: "hsl(var(--bento-border, 0 0% 90%))",
+          darkBorder: "hsl(var(--bento-border-dark, 240 5% 15%))"
+        }
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        '2xl': "1.25rem",
+        '3xl': "1.75rem",
+        '4xl': "2.5rem",
       },
       keyframes: {
         "fade-in": {

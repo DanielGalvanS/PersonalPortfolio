@@ -58,7 +58,7 @@ export default function About() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="space-y-6"
           >
-            <Card className="p-6 hover:shadow-lg transition-shadow">
+            <Card className="p-6 md:p-8 bg-bento/40 dark:bg-bento-dark/40 border-bento-border dark:border-bento-darkBorder hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500">
               <h3 className="text-xl font-semibold mb-4">{t('about.whyChooseMe')}</h3>
               <ul className="space-y-3">
                 {t('about.whyChooseMeReasons', { returnObjects: true }).map((reason, index) => (
@@ -93,7 +93,7 @@ export default function About() {
               <CarouselContent>
                 {t('about.services', { returnObjects: true }).map((service, index) => (
                   <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                    <Card className="h-full hover:shadow-lg transition-all">
+                    <Card className="h-full flex flex-col bg-bento/40 dark:bg-bento-dark/40 border-bento-border dark:border-bento-darkBorder hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
                       <CardContent className="p-6">
                         <h4 className="text-xl font-semibold mb-3">
                           {service.title}

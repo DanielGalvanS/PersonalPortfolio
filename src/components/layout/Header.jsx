@@ -67,14 +67,14 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 w-[95%] max-w-5xl rounded-[2rem]",
         isScrolled || isMobileMenuOpen
-          ? "bg-background/95 backdrop-blur-sm border-b border-border"
+          ? "bg-bento/70 dark:bg-bento-dark/70 backdrop-blur-lg border border-bento-border/50 dark:border-bento-darkBorder/50 shadow-lg"
           : "bg-transparent"
       )}
     >
-      <nav className="container-custom">
-        <div className="flex items-center justify-between h-14">
+      <nav className="px-6 py-2">
+        <div className="flex items-center justify-between h-12">
           <button
             onClick={() => scrollToSection("home")}
             className="text-lg font-semibold text-foreground hover:text-primary transition-colors font-mono"
@@ -124,7 +124,7 @@ export default function Header() {
             </button>
 
             {/* CV toggle*/}
-            <Button variant="outline" className="ml-4" onClick={downloadCV}>
+            <Button variant="default" className="ml-4 rounded-full" onClick={downloadCV}>
               <span><Download className="w-4 h-4"/></span>
               <AnimatePresence mode="wait">
                 <motion.span
@@ -140,8 +140,8 @@ export default function Header() {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center gap-2 md:hidden">
+          {/* Mobile Menu Button & Options (Reordered for visual balance) */}
+          <div className="flex items-center gap-1 md:hidden">
             <button
               onClick={toggleLanguage}
               className="px-2 py-1 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors border border-border rounded-md"

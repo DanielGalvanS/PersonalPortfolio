@@ -61,16 +61,21 @@ export default function Projects() {
           </div>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        {/* Projects Grid Container: Bento Style */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-min">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: 0.1 * (index % 4), ease: [0.16, 1, 0.3, 1] }}
+              // Bento Logic: Every 1st and 4th item spans 2 columns on large screens
+              className={cn(
+                "group",
+                (index % 4 === 0 || index % 4 === 3) ? "md:col-span-2 lg:col-span-2" : "col-span-1"
+              )}
             >
-              <Card className="h-full overflow-hidden hover:shadow-xl transition-all group">
+              <Card className="h-full flex flex-col overflow-hidden hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-500 bg-bento/40 dark:bg-bento-dark/40 border-bento-border dark:border-bento-darkBorder">
                 {/* Project Image */}
                 <div className={`relative h-48 overflow-hidden ${
                   project.image
@@ -121,51 +126,58 @@ export default function Projects() {
                   </div>
                 </div>
 
-                {/* Project Info */}
-                <CardContent className="p-6">
-                  <div className="mb-2">
-                    <Badge variant="outline">{project.category}</Badge>
+                {/* Project Info Bento Box */}
+                <div className="p-6 md:p-8 flex flex-col flex-grow relative z-10 bg-gradient-to-t from-background via-background/95 to-transparent -mt-10 pt-12">
+                  <div className="flex items-center justify-between mb-3">
+                    <Badge variant="outline" className="bg-background/80 backdrop-blur-md">{project.category}</Badge>
                   </div>
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-muted-foreground mb-4">
+                  <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">{project.title}</h3>
+                  <p className="text-muted-foreground mb-6 line-clamp-3">
                     {project.description}
                   </p>
 
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech) => (
-                      <Badge key={tech} variant="secondary" className="text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
+                  <div className="mt-auto">
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.technologies.slice(0, 4).map((tech) => (
+                        <Badge key={tech} variant="secondary" className="text-xs bg-secondary/50">
+                          {tech}
+                        </Badge>
+                      ))}
+                      {project.technologies.length > 4 && (
+                        <span className="text-xs text-muted-foreground flex items-center">
+                          +{project.technologies.length - 4} mas
+                        </span>
+                      )}
+                    </div>
 
-                  {/* Links */}
-                  <div className="flex gap-4">
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-primary hover:underline flex items-center gap-1"
-                      >
-                        <Github className="w-4 h-4" />
-                        {t('projects.repository')}
-                      </a>
-                    )}
-                    {project.galleryUrl && (
-                      <a
-                        href={project.galleryUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-primary hover:underline flex items-center gap-1"
-                      >
-                        <Images className="w-4 h-4" />
-                        {t('projects.gallery')}
-                      </a>
-                    )}
+                    {/* Links */}
+                    <div className="flex gap-4 border-t border-border/50 pt-4">
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm font-medium text-foreground hover:text-primary flex items-center gap-2 transition-colors"
+                        >
+                          <Github className="w-4 h-4" />
+                          {t('projects.repository')}
+                        </a>
+                      )}
+                      {project.galleryUrl && (
+                        <a
+                          href={project.galleryUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm font-medium text-foreground hover:text-primary flex items-center gap-2 transition-colors"
+                        >
+                          <Images className="w-4 h-4" />
+                          {t('projects.gallery')}
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </CardContent>
+                </div>
               </Card>
             </motion.div>
           ))}

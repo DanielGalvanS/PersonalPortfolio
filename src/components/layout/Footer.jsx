@@ -11,8 +11,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t border-border">
-      <div className="container-custom py-8">
+    <footer className="mt-20 mb-8 max-w-5xl mx-auto w-[95%]">
+      <div className="bg-bento/50 border border-bento-border/50 dark:bg-bento-dark/50 dark:border-bento-darkBorder/50 rounded-[2rem] p-8 backdrop-blur-md">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Brand & Copyright */}
           <div className="flex items-center gap-2">
