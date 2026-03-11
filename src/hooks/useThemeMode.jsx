@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { useState, useEffect, useMemo } from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { getTheme } from '@/theme/muiTheme';

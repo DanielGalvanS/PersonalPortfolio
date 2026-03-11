@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail, MessageCircle } from "lucide-react";
 import Button from "../ui/Button";
@@ -8,7 +8,6 @@ import Typeanimation from '@/components/ui/typeanimation';
 
 export default function Hero() {
   const { t } = useTranslation();
-  const [imageLoaded, setImageLoaded] = useState(false);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -29,46 +28,41 @@ export default function Hero() {
     >
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-6"
-          >
+          <div className="space-y-6 pt-8 md:pt-12">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              initial={{ opacity: 0, filter: "blur(4px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0 }}
             >
-              <p className="text-primary font-medium mb-2">{t("hero.greeting")}</p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+              <p className="text-primary font-medium mb-2 text-lg">{t("hero.greeting")}</p>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground mb-4">
                 {personalInfo.name}
               </h1>
-              
-              <Typeanimation
-                words={['Software Engineer', 'Full Stack Developer', 'React Developer', 'UI/UX Designer', 'Mobile Developer']}
-                typingSpeed="slow"
-                deletingSpeed="slow"
-                pauseDuration={2000}
-                gradientColors="linear-gradient(to right, #ec4899, #a855f7, #6366f1)"
-                className="text-3xl md:text-5xl font-extrabold"
-              />
-              
+              <div className="min-h-[48px] md:min-h-[60px] lg:min-h-[72px] flex items-center">
+                <Typeanimation
+                  words={['Software Engineer', 'Full Stack Developer', 'React Developer', 'UI/UX Designer', 'Mobile Developer']}
+                  typingSpeed="slow"
+                  deletingSpeed="slow"
+                  pauseDuration={2000}
+                  gradientColors="linear-gradient(to right, #ec4899, #a855f7, #6366f1)"
+                  className="text-3xl md:text-5xl font-extrabold"
+                />
+              </div>
             </motion.div>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg text-muted-foreground max-w-xl"
+              initial={{ opacity: 0, filter: "blur(4px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              className="text-lg md:text-xl text-muted-foreground max-w-xl"
             >
               {t("hero.bio")}
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              initial={{ opacity: 0, filter: "blur(4px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
               className="flex flex-wrap gap-4"
             >
               <Button
@@ -98,25 +92,19 @@ export default function Hero() {
                 {t("hero.whatsapp")}
               </Button>
             </motion.div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative hidden lg:flex justify-center"
+          <div
+            className="relative hidden lg:flex justify-center animate-zoom-in"
           >
             <div className="relative w-[400px] h-[400px] -mt-28">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full blur-3xl" />
               <div className="relative w-full rounded-full overflow-hidden border-4 border-border bg-accent flex items-center justify-center">
-                {!imageLoaded && (
-                  <div className="absolute inset-0 bg-gradient-to-br from-muted to-muted-foreground/10 animate-pulse" />
-                )}
                 <img
-                  src="/daniel.webp"
+                  src="/daniel-optimized.webp"
                   alt="Profile Picture"
-                  onLoad={() => setImageLoaded(true)}
-                  className={`transition-opacity duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                  fetchpriority="high"
+                  className="w-full h-full object-cover"
                 />
               </div>
 
@@ -152,7 +140,7 @@ export default function Hero() {
                 </a>
               </motion.div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         <motion.div

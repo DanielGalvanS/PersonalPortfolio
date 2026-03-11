@@ -22,6 +22,7 @@ const SkillBar = ({ skill, delay = 0 }) => {
           <img
             src={`https://svgl.app/library/${skill.icon}.svg`}
             alt={skill.name}
+            loading="lazy"
             className="w-5 h-5"
           />
           <span className="font-medium text-sm">{skill.name}</span>

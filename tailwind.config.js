@@ -52,6 +52,10 @@ export default {
           "0%": { opacity: "0", transform: "translateY(10px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        "zoom-in": {
+          "0%": { opacity: "0", transform: "scale(0.95)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
         "fade-up": {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
@@ -71,6 +75,7 @@ export default {
       },
       animation: {
         "fade-in": "fade-in 0.4s ease-out",
+        "zoom-in": "zoom-in 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
         "fade-up": "fade-up 0.4s ease-out",
         "slide-in": "slide-in 0.3s ease-out",
         "canopy-horizontal": "canopy-horizontal var(--duration) linear infinite",

@@ -145,6 +145,7 @@ export default function FeaturedProject() {
                     <img
                       src="/horno3-splash.JPG"
                       alt="Horno 3 Splash Screen"
+                      loading="lazy"
                       className="h-[400px] md:h-[500px] lg:h-[550px] w-auto rounded-[30px] md:rounded-[40px] shadow-2xl dark:shadow-pink-500/10 transition-shadow duration-300"
                       style={{
                         filter: "contrast(1.05) saturate(1.1)"
@@ -168,6 +169,7 @@ export default function FeaturedProject() {
                     <img
                       src="/horno3-home.JPG"
                       alt="Horno 3 Home Screen"
+                      loading="lazy"
                       className="h-[400px] md:h-[500px] lg:h-[550px] w-auto rounded-[30px] md:rounded-[40px] shadow-2xl dark:shadow-pink-500/10 transition-shadow duration-300"
                       style={{
                         filter: "contrast(1.05) saturate(1.1)"
