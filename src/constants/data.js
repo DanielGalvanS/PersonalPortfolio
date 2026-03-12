@@ -67,7 +67,17 @@ export const projects = [
     featured: true,
     category: "Full Stack",
     award: "1st Place KMX Young Innovator Award",
-    period: "Aug 2024 – Oct 2024"
+    period: "Aug 2024 – Oct 2024",
+    gallery: [
+      { src: "/KIA/K1.webp", caption: "Your first day starts here" },
+      { src: "/KIA/K2.webp", caption: "Complete your tasks, wait for approval" },
+      { src: "/KIA/K3.webp", caption: "Every task you finish earns you something" },
+      { src: "/KIA/K4.webp", caption: "Track where you are in your journey" },
+      { src: "/KIA/K5.webp", caption: "Admins review and verify each employee's progress" },
+      { src: "/KIA/K8.webp", caption: "Your virtual space, waiting to be yours" },
+      { src: "/KIA/K9.webp", caption: "Items you've earned along the way" },
+      { src: "/KIA/K10.webp", caption: "Making it feel like home" },
+    ],
   },
   {
     id: 2,
