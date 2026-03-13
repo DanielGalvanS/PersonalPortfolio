@@ -273,10 +273,10 @@ export default function Header() {
                   </h3>
                   <div className="flex flex-col gap-4">
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                      I specialize in building robust and efficient systems. I've worked on complex projects developing architectures and solutions with AWS, React, Python, and .NET.
+                      Most recently, I worked as a Software Engineer Intern at <strong className="font-semibold text-foreground/90">The Home Depot</strong>, engineering production modules for a Store Management System serving 140+ locations using C#/.NET, React, and SQL Server.
                     </p>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                      Always eager to learn something new and apply it to solve real-world problems.
+                      Passionate about building innovative products, I won <strong className="font-semibold text-foreground/90">1st place in the Kia Motors Innovation Challenge</strong>. My experience spans across full-stack web development and native mobile apps using React Native and Swift, building scalable cloud architectures and integrating AI capabilities to create complete user experiences.
                     </p>
                   </div>
                 </div>
