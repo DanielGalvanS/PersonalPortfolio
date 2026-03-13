@@ -208,13 +208,27 @@ export default function Hero() {
                       </div>
                     </div>
 
-                    <div className="w-full aspect-[16/9] overflow-hidden bg-white/5 rounded-sm mb-20">
-                      <img
-                        src={selectedProject.image}
-                        alt={selectedProject.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                    {Array.isArray(selectedProject.image) ? (
+                      <div className="w-full aspect-[16/9] grid grid-cols-2 gap-4 mb-20">
+                        {selectedProject.image.map((imgSrc, idx) => (
+                          <div key={idx} className="w-full h-full overflow-hidden bg-white/5 rounded-sm">
+                            <img
+                              src={imgSrc}
+                              alt={`${selectedProject.title} ${idx + 1}`}
+                              className="w-full h-full object-cover object-top"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="w-full aspect-[16/9] overflow-hidden bg-white/5 rounded-sm mb-20">
+                        <img
+                          src={selectedProject.image}
+                          alt={selectedProject.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
 
                     <div className="max-w-5xl mx-auto">
                       <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 mb-12">
