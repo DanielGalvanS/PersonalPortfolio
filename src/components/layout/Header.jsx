@@ -6,9 +6,49 @@ import { navLinks } from "@/constants/data";
 import Button from "@/components/ui/Button";
 import { useTranslation } from 'react-i18next';
 
+const HoverImageLink = ({ text, imageSrc }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    setMousePos({ x: e.clientX, y: e.clientY });
+  };
+
+  return (
+    <span
+      className="relative inline-block font-medium text-foreground underline decoration-border/50 underline-offset-4 cursor-crosshair hover:text-primary transition-colors duration-300 mx-1"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onMouseMove={handleMouseMove}
+    >
+      {text}
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 2 }}
+            exit={{ opacity: 0, scale: 0.8, rotate: 5 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="fixed z-[500] pointer-events-none rounded-xl overflow-hidden shadow-2xl border border-white/10"
+            style={{
+              left: mousePos.x + 20,
+              top: mousePos.y - 100,
+              width: "200px",
+              height: "200px"
+            }}
+          >
+            <img src={imageSrc} alt={text} className="w-full h-full object-cover" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </span>
+  );
+};
+
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isProfileImgOpen, setIsProfileImgOpen] = useState(false);
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const { t, i18n } = useTranslation();
 
@@ -196,9 +236,15 @@ export default function Header() {
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className="fixed top-0 right-0 w-[90%] md:w-[450px] lg:w-[500px] h-full bg-background border-l border-border z-[401] flex flex-col p-8 lg:p-12 overflow-y-auto pointer-events-auto"
             >
-              {/* Top bar */}
               <div className="flex justify-between items-center mb-12 shrink-0">
-                <img src="/daniel-optimized.webp" alt="Daniel" className="w-12 h-12 rounded-full grayscale object-cover" />
+                <div className="w-12 h-12 relative flex-shrink-0 cursor-pointer" onClick={() => setIsProfileImgOpen(true)}>
+                  <img
+                    src="/About/A2.jpeg"
+                    alt="Daniel"
+                    draggable="false"
+                    className="w-full h-full rounded-full object-cover object-bottom hover:scale-105 transition-transform"
+                  />
+                </div>
                 <button
                   onClick={() => setIsAboutOpen(false)}
                   className="px-6 py-2 rounded-full border border-border text-sm font-sans hover:bg-foreground/5 transition-colors"
@@ -210,11 +256,15 @@ export default function Header() {
               {/* Content */}
               <div className="flex flex-col gap-8 text-foreground mt-8">
                 <h2 className="text-2xl md:text-3xl font-sans leading-[1.3] text-foreground/90">
-                  {t("about.greeting", { defaultValue: "Hi, I'm a software engineer based in Mexico." })}
+                  {t("about.greeting", { defaultValue: "Hi, I'm a software engineer based in the beautiful city of Monterrey, México." })}
                 </h2>
 
                 <p className="text-base text-muted-foreground leading-relaxed">
-                  Computer Science student at Tecnológico de Monterrey with hands-on experience in full stack development. I'm passionate about building innovative solutions that make a real impact. I strive to bridge functional design with robust architecture.
+                  Computer Science student at Tecnológico de Monterrey with experience in full stack development. I'm passionate about building innovative solutions that make a real impact. I strive to bridge functional design with robust architecture.
+                </p>
+
+                <p className="text-base text-muted-foreground leading-relaxed">
+                  Outside of coding, one of the things I enjoy most about life is <HoverImageLink text="music" imageSrc="/About/A4.jpeg" />. I love the concept of how several individual parts, when put together, create something beautiful. I also enjoy <HoverImageLink text="hiking" imageSrc="/About/A6.jpeg" />, <HoverImageLink text="traveling" imageSrc="/About/A1.jpeg" />, and exploring new ideas.
                 </p>
 
                 <div className="mt-8 border-t border-border/10 pt-8">
@@ -226,13 +276,45 @@ export default function Header() {
                       I specialize in building robust and efficient systems. I've worked on complex projects developing architectures and solutions with AWS, React, Python, and .NET.
                     </p>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                      Always eager to learn something new and apply it to solve real-world problems. Outside of code, I enjoy hiking, traveling, and exploring new ideas.
+                      Always eager to learn something new and apply it to solve real-world problems.
                     </p>
                   </div>
                 </div>
               </div>
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+
+      {/* Full Screen Profile Image Viewer */}
+      <AnimatePresence>
+        {isProfileImgOpen && (
+          <div className="fixed inset-0 z-[500] flex items-center justify-center pointer-events-auto cursor-default">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/90 backdrop-blur-sm"
+              onClick={() => setIsProfileImgOpen(false)}
+            />
+            <button
+              onClick={() => setIsProfileImgOpen(false)}
+              className="absolute top-6 right-6 lg:top-10 lg:right-10 px-6 py-2 rounded-full border border-white/20 text-sm font-sans text-white hover:bg-white/10 transition-colors z-10"
+            >
+              Close
+            </button>
+            <motion.img
+              initial={{ scale: 0.7, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.7, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              src="/About/A2.jpeg"
+              alt="Daniel Details"
+              draggable="false"
+              className="w-[80vw] sm:w-[50vw] md:w-[40vw] max-w-[450px] aspect-square object-cover object-bottom rounded-full shadow-2xl cursor-default border-4 border-background/20 relative z-10 m-0"
+              onClick={(e) => e.stopPropagation()} // Prevent close when clicking the image itself
+            />
+          </div>
         )}
       </AnimatePresence>
     </header>
