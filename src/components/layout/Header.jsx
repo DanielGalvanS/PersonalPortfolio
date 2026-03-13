@@ -52,7 +52,19 @@ export default function Header() {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const { t, i18n } = useTranslation();
 
-
+  // Preload images
+  useEffect(() => {
+    const imagesToPreload = [
+      '/About/A1.jpeg',
+      '/About/A2.jpeg',
+      '/About/A4.jpeg',
+      '/About/A6.jpeg'
+    ];
+    imagesToPreload.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
 
   // Watch for overlay open/close via data attribute
   useEffect(() => {
