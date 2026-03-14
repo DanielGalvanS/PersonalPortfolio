@@ -311,13 +311,27 @@ export default function Hero() {
                       data-idx={i}
                       className="flex flex-row items-stretch py-0"
                     >
-                      {/* Foto */}
+                      {/* Foto o Video */}
                       <div className="flex-1 flex items-center justify-center px-8 lg:px-14 py-16 bg-neutral-950">
-                        <img
-                          src={item.src}
-                          alt={item.caption}
-                          className="max-h-[75vh] max-w-full w-auto h-auto rounded-sm"
-                        />
+                        {item.type === 'youtube' ? (
+                          <div className="w-full max-w-4xl aspect-video rounded-sm overflow-hidden shadow-2xl">
+                            <iframe 
+                              width="100%" 
+                              height="100%" 
+                              src={item.src} 
+                              title={item.caption}
+                              frameBorder="0" 
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                              allowFullScreen
+                            ></iframe>
+                          </div>
+                        ) : (
+                          <img
+                            src={item.src}
+                            alt={item.caption}
+                            className="max-h-[75vh] max-w-full w-auto h-auto rounded-sm"
+                          />
+                        )}
                       </div>
 
                       {/* Info lateral */}
