@@ -268,7 +268,7 @@ export default function Header() {
               {/* Content */}
               <div className="flex flex-col gap-8 text-foreground mt-8">
                 <h2 className="text-2xl md:text-3xl font-sans leading-[1.3] text-foreground/90">
-                  {t("about.greeting", { defaultValue: "Hi, I'm a software engineer based in the beautiful city of Monterrey, México." })}
+                  {t("about.greeting", { defaultValue: "Hi, I'm a software engineer based in Monterrey, México." })}
                 </h2>
 
                 <p className="text-base text-muted-foreground leading-relaxed">
