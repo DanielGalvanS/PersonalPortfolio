@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ExternalLink, Github, Images, X } from "lucide-react";
+import { ArrowRight, Clapperboard, ExternalLink, Github, Images, X } from "lucide-react";
 import { personalInfo, projects } from "@/constants/data";
 import { useTranslation } from "react-i18next";
 
@@ -10,6 +10,7 @@ export default function Hero() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [activeImg, setActiveImg] = useState(0);
   const wrapperRef = useRef(null);
   const hasScrolledUp = useRef(false);
@@ -31,7 +32,7 @@ export default function Hero() {
   // Escape key closes gallery
   useEffect(() => {
     const handleKey = (e) => {
-      if (e.key === "Escape") setIsGalleryOpen(false);
+      if (e.key === "Escape") { setIsGalleryOpen(false); setIsVideoModalOpen(false); }
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
@@ -253,10 +254,14 @@ export default function Hero() {
                             )}
                             {selectedProject.gallery?.length > 0 && (
                               <button
-                                onClick={() => setIsGalleryOpen(true)}
+                                onClick={() => selectedProject.galleryLabel ? setIsVideoModalOpen(true) : setIsGalleryOpen(true)}
                                 className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest border border-white/20 text-neutral-300 px-5 py-2.5 rounded-full hover:bg-white hover:text-neutral-950 transition-all"
                               >
-                                <Images className="w-3.5 h-3.5" /> Gallery
+                                {selectedProject.galleryLabel
+                                  ? <Clapperboard className="w-3.5 h-3.5" />
+                                  : <Images className="w-3.5 h-3.5" />
+                                }
+                                {selectedProject.galleryLabel || "Gallery"}
                               </button>
                             )}
                           </div>
@@ -356,6 +361,49 @@ export default function Hero() {
                 </div>
               </div>
 
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+
+      {/* VIDEO MODAL */}
+      {createPortal(
+        <AnimatePresence>
+          {isVideoModalOpen && selectedProject?.gallery?.[0]?.type === 'youtube' && (
+            <motion.div
+              key="video-modal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 z-[400] flex items-center justify-center bg-black/80 backdrop-blur-sm px-4"
+              onClick={() => setIsVideoModalOpen(false)}
+            >
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="relative w-full max-w-4xl aspect-video rounded-sm overflow-hidden shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={selectedProject.gallery[0].src}
+                  title={selectedProject.gallery[0].caption}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+                <button
+                  onClick={() => setIsVideoModalOpen(false)}
+                  className="absolute top-3 right-3 flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/60 border border-white/20 text-xs font-mono uppercase tracking-widest text-neutral-400 hover:text-white hover:border-white/50 transition-all"
+                >
+                  <X className="w-3 h-3" /> Close
+                </button>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>,

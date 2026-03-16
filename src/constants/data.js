@@ -112,16 +112,24 @@ export const projects = [
   },
   {
     id: 3,
-    title: "SecuBank – IoT Security System",
-    description: "IoT system integrating RFID and motion sensors to secure bank vaults with multilevel access validation. Backend API and data infrastructure development for real-time alerts and user authentication.",
-    image: "",
-    technologies: ["Arduino", "MySQL", "REST API"],
+    title: "AION – AIOps Workflow Management Platform",
+    description: "Web platform for managing AIOps operational workflows, centralizing system logs, and monitoring infrastructure metrics. Features an AI assistant integrated with MCP to query PostgreSQL logs and execute actions across external services. Enables Jira workflow analysis and automation — ticket creation, incident management, and workflow orchestration — alongside Slack integration for operational alerts and communication, with role-based access control. Designed and configured CI/CD pipelines and deployment environments via Azure DevOps.",
+    image: "/AION/A1.png",
+    technologies: ["React", "Node.js", "Express", "Python", "PostgreSQL", "OpenAI API", "MCP", "Azure DevOps"],
     liveUrl: "",
-    githubUrl: "", // Sin GitHub
+    githubUrl: "",
     galleryUrl: "",
-    featured: false,
-    category: "Backend",
-    period: "Abr 2024 – Jun 2024"
+    featured: true,
+    category: "Full Stack",
+    period: "Jan 2026 – Apr 2026",
+    galleryLabel: "Watch Demo",
+    gallery: [
+      {
+        type: 'youtube',
+        src: "https://www.youtube.com/embed/MX7XRMWdAOc",
+        caption: "AION – AIOps Platform Demo"
+      },
+    ],
   },
 ];
 
