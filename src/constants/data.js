@@ -66,7 +66,7 @@ export const projects = [
     galleryUrl: "",
     featured: true,
     category: "Full Stack",
-    period: "Apr 2025 – Jun 2025",
+    period: "Apr – Jun 2025",
     gallery: [
       { src: "/HORNO3/H1.png", caption: "Welcome screen" },
       { src: "/HORNO3/H2.png", caption: "Initial onboarding process" },
@@ -98,7 +98,7 @@ export const projects = [
     featured: true,
     category: "Full Stack",
     award: "1st Place KMX Young Innovator Award",
-    period: "Aug 2024 – Oct 2024",
+    period: "Aug – Oct 2024",
     gallery: [
       { src: "/KIA/K1.webp", caption: "Your first day starts here" },
       { src: "/KIA/K2.webp", caption: "Complete your tasks, wait for approval" },
@@ -121,7 +121,7 @@ export const projects = [
     galleryUrl: "",
     featured: true,
     category: "Full Stack",
-    period: "Jan 2026 – Apr 2026",
+    period: "Oct – Dec 2025",
     galleryLabel: "Watch Demo",
     gallery: [
       {

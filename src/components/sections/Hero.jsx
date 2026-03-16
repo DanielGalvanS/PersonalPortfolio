@@ -192,10 +192,10 @@ export default function Hero() {
                               <p className="text-sm font-sans text-white">{selectedProject.role}</p>
                             </div>
                           )}
-                          {selectedProject.year && (
+                          {selectedProject.period && (
                             <div>
                               <p className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 mb-1">Date</p>
-                              <p className="text-sm font-sans text-white">{selectedProject.year}</p>
+                              <p className="text-sm font-sans text-white">{selectedProject.period}</p>
                             </div>
                           )}
                         </div>
