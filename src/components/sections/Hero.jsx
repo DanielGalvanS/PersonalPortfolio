@@ -192,12 +192,6 @@ export default function Hero() {
                               <p className="text-sm font-sans text-white">{selectedProject.role}</p>
                             </div>
                           )}
-                          {selectedProject.period && (
-                            <div>
-                              <p className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 mb-1">Date</p>
-                              <p className="text-sm font-sans text-white">{selectedProject.period}</p>
-                            </div>
-                          )}
                         </div>
                       </div>
                       <div className="flex flex-row lg:flex-col flex-wrap gap-2 lg:items-end lg:pt-16">
