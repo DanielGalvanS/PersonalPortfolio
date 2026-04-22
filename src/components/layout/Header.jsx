@@ -86,8 +86,8 @@ export default function Header() {
 
   const downloadCV = () => {
     const link = document.createElement('a');
-    link.href = '/Daniel Resume.pdf';
-    link.download = 'Daniel Resume.pdf';
+    link.href = '/DanielResume .pdf';
+    link.download = 'DanielResume .pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
